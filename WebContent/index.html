@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Foodbalance</title>
+
+    <!-- Bootstrap Core CSS -->
+	<link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS: You can use this stylesheet to override any Bootstrap styles and/or apply your own styles --> 
+	<link href="css/custom.css" rel="stylesheet">
+
+	<!-- To use icons like for Google and Facebook login --> 
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Fredericka+the+Great&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Walter+Turncoat&display=swap" rel="stylesheet"> 
+	<link href="https://fonts.googleapis.com/css?family=Josefin+Slab&display=swap" rel="stylesheet"> 
+	<link href="https://fonts.googleapis.com/css?family=Sacramento&display=swap" rel="stylesheet"> 
+	<link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet"> 
+	<link href="https://fonts.googleapis.com/css?family=Homemade+Apple&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Cedarville+Cursive&display=swap" rel="stylesheet">  
+
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+</head>
+<body class="cyan-shell-gradient-background it">
+
+	<nav class="my-navbar" style="font-family: 'Josefin Slab'">
+	 	<div style="padding-top: 0 0 0 0;"> <!-- class="container-fluid" -->
+			
+			<ul class="nav navbar-nav">
+				<li class="sub-menu-parent" tab-index="0"><a>chi siamo?</a>
+					<ul class="sub-menu" style="width:500%; height:auto">
+						<p  style="width:50%; padding: 10px 10px 0 0"> 
+							<b>FoodBalance</b> rapprestenta il nostro modo di perseguire un obiettivo, generare una cultura nutrizionale che ha alla base la salute dei nostri utenti 
+						</p>
+						<div class="my-container-div right" style="width:50%;">
+							<img src="pictures/frame.jpg" style="width:100%; border-radius: 0 5px 5px 0;">
+						</div>
+					</ul>
+				</li>
+		  		<li class="sub-menu-parent"><a>Page 2</a>
+					<ul class="sub-menu" style="width:500%; height:320%">
+						<p  style="width:50%; padding: 10px 10px 0 0"> <b>FoodBalance</b> </p>
+						<div class="my-container-div right" style="width:50%;">
+							<img src="pictures/frame.jpg" style="width:100%; border-radius: 0 5px 5px 0;">
+						</div>
+					</ul>
+				</li>
+		  		<li class="sub-menu-parent"><a>Page 3</a>
+					<ul class="sub-menu" style="width:500%; height:auto">
+						<p  style="width:50%; padding: 10px 10px 0 0"> <b>FoodBalance</b> </p>
+						<div class="my-container-div right" style="width:50%;">
+							<img src="pictures/frame.jpg" style="width:100%; border-radius: 0 5px 5px 0;">
+						</div>
+					</ul>
+				</li>
+			</ul>
+
+			<div class="navbar-header" style="position: absolute; left: 50%; transform: translatex(-50%);" > <!--#080808  #FA7268-->
+				<a style="font-family: 'Pacifico'; font-size:25px; color: #ff9d7d;" class="navbar-brand active" href="./index.html"> -FoodBalance- </a>
+			</div>
+
+			<ul class="nav navbar-nav navbar-right" style="margin-right :10px; position: absolute; right: 0%; font-family: 'Pacifico'; font-size:15px; color: #ff9d7d;">
+				<li><a href="./createuser.html"><span class="glyphicon glyphicon-user"></span> Iscriviti</a></li>
+				<li class="sub-menu-parent" tab-index="0">
+					<a><span class="glyphicon glyphicon-log-in"></span> Accedi<span class="caret"></span></a>
+					<ul class="sub-menu" style="width:220%; height:auto; padding: 10% 10% 10%; font-size: 20px; ">
+						<form method="POST" action="Login">
+							<div class="from-group">
+								<input name="username" type="text" class="form-control" placeholder="username" value="passhione@ghirga.bucciarati">
+	  						</div>
+							<span style="display:inline-block"></span>
+							<div class="from-group">
+								<input name="password" type="password" class="form-control" placeholder="password" value="pannacottafugo">
+								<a href="#" style="font-size:15px; padding:2px;">password dimenticata?</a>
+	  						</div>
+							<span style="display:inline-block"></span>
+							<button type="submit" class="my-button">Accedi</button>
+							<span style="display:inline-block"></span>
+							<li class="dropdown-header" style="text-align:center; font-size:15px;">Oppure</li> 
+							<button type="submit" class="my-button facebook-login"><i class="fa fa-facebook-square"></i> Accedi con Facebook</button>
+							<button type="submit" class="my-button google-login" style="margin-top :5px;"><i class="fa fa-google"></i> Accedi con Google</button>		
+						</form>
+					</ul>
+				</li>
+			</ul>
+	  	</div>
+	</nav>
+
+	<div class="my-slider-container" style="position: absolute; top: 20%; left: 5%; max-width:50%; max-height: 50%; margin-bottom: -20px; border-radius: 5px;">
+		<div style="filter: brightness(50%);">
+		 	<img class="mySlides" src="pictures/frame_01.jpg" style="width:100%; height:100%; opacity: 1; z-index:-1;">
+			<img class="mySlides" src="pictures/frame_02.jpg" style="width:100%; height:100%; opacity: 0; z-index:-2; position:absolute; top: 0; right: 0;">
+			<img class="mySlides" src="pictures/frame_03.jpg" style="width:100%; height:100%; opacity: 0; z-index:-3; position:absolute; top: 0; right: 0;">
+		</div>
+
+		<div class="my-container-div left" style="width: 10%;">
+			<button class="my-slider-btn leftbtn" onclick="plusDivs(-1)"></button> <!--&#10094;&#10095;-->
+		</div>
+		<div class="my-container-div right" style="width: 10%;">
+			<button class="my-slider-btn rightbtn" onclick="plusDivs(1)"></button>
+		</div>
+		<div class="my-container-div bottom-middle" style="z-index:900;">
+			<span class="my-slider-dots" onclick="currentDiv(0)"></span>
+			<span class="my-slider-dots" onclick="currentDiv(1)"></span>
+			<span class="my-slider-dots" onclick="currentDiv(2)"></span>
+		</div>
+	</div>
+
+	<div class="my-container-div top-left height-transition" style= "top: 20%; height:100px; width: 30%; border-radius: 10px; background-color: trasparent; color: white">
+			<p class="myTitle" style="font-family: 'Pacifico'; font-size: 60px;">-FoodBalance-</p>
+			<p class="myTitle" style="font-family: 'Pacifico'; font-size: 60px;">-Condividi-</p>
+			<p class="myTitle" style="font-family: 'Pacifico'; font-size: 60px;">-Salva-</p> <!-- color: rgba(255,255,255,1); -->
+			<p class="myParagraph" style="font-family: 'Josefin Slab', cursive;"> rapprestenta il nostro modo di perseguire un obiettivo, generare una cultura nutrizionale che ha alla base la salute dei nostri utenti </p>
+			<p class="myParagraph" style="font-family: 'Josefin Slab', cursive;"> le tue ricette con migliaia di utenti, crea il tuo blog personale </p>
+			<p class="myParagraph" style="font-family: 'Josefin Slab', cursive;"> le tue preferite nel tuo ricettario </p>
+	</div>
+
+	<!--<button type="submit" class="my-button">Accedi</button>
+	<div style="padding-left:16px">
+		<h1>Welcome to 1st app</h1>
+		<a href= "./createuser.html"> create new user</a>
+	</div> -->
+	<span style="display:inline-block"></span>
+	<!--<div class="footer">
+	  <p>Footer</p>
+	</div>-->
+
+	<script>
+		var slideIndex = 0;
+		//var precSlide = 0;
+
+		//showDivs(slideIndex);
+		carousel();
+
+		function plusDivs(n) {
+		  showDivs(n); // slideIndex += n;
+		}
+
+		function currentDiv(n) {
+		  showDivs(slideIndex = n);
+		}
+
+		function showDivs(n) {
+
+			var x = document.getElementsByClassName("mySlides");
+			var y = document.getElementsByClassName("myParagraph");
+
+			for (var i = 0; i < y.length; i++) { 
+				y[i].style.display = "none";
+			}
+
+			var precSlide = slideIndex;
+			slideIndex = (slideIndex+n > x.length-1)? 0 : (slideIndex+n < 0)? x.length-1 : slideIndex + n;
+			
+			if(n == 1){
+				x[slideIndex].className = "mySlides my-animate-right" ;
+				x[precSlide].className  = "mySlides my-animate-toleft" ;
+			}
+			else if(n == -1){
+				x[slideIndex].className = "mySlides my-animate-left" ;
+				x[precSlide].className  = "mySlides my-animate-toright" ;
+			}
+
+			x[slideIndex].style.opacity = 1;
+			x[precSlide].style.opacity = 0;
+
+			y[slideIndex].style.display = "block"; 
+			
+			setDots(slideIndex);
+		}
+
+		function setDots(n) {
+			var dots = document.getElementsByClassName("my-slider-dots");
+			
+			for (i = 0; i < dots.length; i++) {
+				dots[i].style.backgroundColor = "transparent";
+			}
+			
+			dots[n].style.backgroundColor = "#fff";
+		}
+
+		function carousel() {
+			//var i;
+			/*for (i = 0; i < x.length; i++) { 
+				x[i].style.display = "none";
+			}*/
+			//slideIndex++;
+			//if (slideIndex > x.length-1) {slideIndex = 0} 
+			//x[slideIndex].style.display = "block"; 
+			
+			var x = document.getElementsByClassName("mySlides");
+			var y = document.getElementsByClassName("myParagraph");
+			var w = document.getElementsByClassName("myTitle");
+
+			var z = document.getElementsByClassName("height-transition");
+
+			for (var i = 0; i < y.length; i++) { 
+				y[i].style.display = "none";
+				w[i].style.display = "none";
+			}
+			
+			var precSlide = slideIndex;
+			slideIndex = (slideIndex+1 > x.length-1)? 0 : slideIndex+1;
+
+			x[slideIndex].className = "mySlides my-animate-right" ;
+			x[precSlide].className  = "mySlides my-animate-toleft" ;   
+			
+			x[slideIndex].style.opacity = 1;
+			x[precSlide].style.opacity = 0;
+			
+			y[slideIndex].style.display = "block"; 
+			w[slideIndex].style.display = "block";
+
+			
+			/*var h0 = z[0].style.clientHeight;
+			z[0].style.height = "auto";
+			var h1 = z[0].style.clientHeight;
+			z[0].style.height = h0 ;*/
+			//z[0].style.height = h1 +"px";
+			z[0].style.height = (slideIndex == 0)? "30%" : (slideIndex == 1)? "20%" : "25%" ;
+
+			setDots(slideIndex);
+			
+			setTimeout(carousel, 4000);    
+		}
+	</script>
+
+	
+
+</body>
+</html>

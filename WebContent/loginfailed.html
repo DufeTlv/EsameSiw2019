@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Accedi</title>
+
+    <!-- Bootstrap Core CSS -->
+	<link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS: You can use this stylesheet to override any Bootstrap styles and/or apply your own styles --> 
+	<link href="css/custom.css" rel="stylesheet">
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Fredericka+the+Great&display=swap" rel="stylesheet">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+</head>
+<body class="gradient-background it">
+
+<nav class="navbar navbar-inverse my-navbar">
+ 	<div class="container-fluid">
+		<div class="navbar-header">
+			<a style="font-family: 'Fredericka the Great', cursive;" class="navbar-brand" href="./index.html">FOODBALANCE</a>
+    	</div>
+
+		<select style="margin-top: 10px;" class="selectpicker" data-width="fit">
+   			<option onclick="document.body.className='gradient-background it'"> Italiano</option>
+ 			<option onclick="document.body.className='gradient-background en'"> English</option>
+		</select>
+	</div>
+</nav>
+
+<form method="POST" action="Login" style="margin: 20px 0 20px 0;">
+	<div class="container my-container">
+
+		<h1 class="gradient-text">
+			<p lang="it">Accedi</p>
+			<p lang="en">Login</p>
+		</h1>
+
+		<hr style="border-style: dotted; border-color: #688BE5;">
+
+		<label for="email" class="gradient-text" style="padding: 5px 0 0 0;"><b>Email: </b></label>
+		<input class="my-input" name="username" type="text" size="40" maxlength="40" name="email" placeholder="email" required>
+		<hr class="my-custom-hr">
+
+		<label for="password" class="gradient-text" style="padding: 5px 0 0 0;"><b>Password: </b></label>
+		<input class="my-input" name="password" type="password" placeholder="password" id="myInput">
+		<hr class="my-custom-hr">
+		<label class="container custom-checkbox">
+			<input type="checkbox" onclick="myFunction()">
+			<span class="checkmark"></span>
+			<label class="gradient-text">show password</label>
+		</label>
+		<a href="#" style="font-size:13px;"><p style="text-align:right; padding: -5px 0 0 0;">forgot yout password?</p></a>
+		
+		<span style="display:inline-block"></span>
+		<button lang="it" type="submit" class="my-button my-gradient-btn">Accedi</button>
+		<button lang="en" type="submit" class="my-button my-gradient-btn">Login</button>
+		<span style="display:inline-block"></span>
+		<li class="dropdown-header" style="text-align:center;">Oppure</li> 
+		<button lang="it" type="submit" class="my-button facebook-login"><i class="fa fa-facebook-square"></i> Accedi con Facebook</button>
+		<button lang="en" type="submit" class="my-button facebook-login"><i class="fa fa-facebook-square"></i> Login with Facebook</button>
+		<button lang="it" type="submit" class="my-button google-login" style="margin-top :5px;"><i class="fa fa-google"></i> Accedi con Google</button>
+		<button lang="en" type="submit" class="my-button google-login" style="margin-top :5px;"><i class="fa fa-google"></i> Login with Google</button>
+		
+		<li class="dropdown-header" style="text-align:center; margin-top: 10px;">Non hai ancora un account?</li> 
+		<a href="./createuser.html"><p style="text-align:center; margin: 0 0 -10px 0;">Registrati</p></a>
+
+	</div>
+</form>
+
+</body>
+</html>
+

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Registrazione</title>
+
+    <!-- Bootstrap Core CSS -->
+	<link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS: You can use this stylesheet to override any Bootstrap styles and/or apply your own styles --> 
+	<link href="css/custom.css" rel="stylesheet">
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Fredericka+the+Great&display=swap" rel="stylesheet">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+</head>
+<body class="gradient-background it">
+
+	<nav class="navbar navbar-inverse my-navbar">
+	 	<div class="container-fluid">
+			<div class="navbar-header">
+				<a style="font-family: 'Fredericka the Great', cursive;" class="navbar-brand" href="./index.html">FOODBALANCE</a>
+			</div>
+
+		</div>
+	</nav>
+
+	<form method="POST" action="CreateUser.do" style="margin: 20px 0 20px 0;">
+		<div class="container my-container">
+
+			<h1 class="gradient-text">
+				<p lang="it">Registrati</p>
+			</h1>
+			
+			<p class="gradient-text"lang="it">Compila il seguente form per creare un account.</p>
+
+			<hr style="border-style: dotted; border-color: #688BE5;">
+
+			<label for="name" class="gradient-text" style="margin: 0 0 0 0;">
+				<b>
+					<p style="margin: 0 0 0 0;" lang="it">Nome: </p>
+				</b>
+			</label>
+			<input class="my-input" type="text" size="40" maxlength="40" name="firstname" placeholder="name" required>
+			<hr class="my-custom-hr">
+
+			<label for="surname" class="gradient-text" style="margin: 0 0 0 0;">
+				<b>
+					<p style="margin: 0 0 0 0;" lang="it">Cognome: </p>
+				</b>
+			</label>
+			<input class="my-input" type="text" size="40" maxlength="40" name="lastname" placeholder="surname" required>
+			<hr class="my-custom-hr">
+
+			<label for="sex" class="gradient-text" style="margin: 0 0 0 0;">
+				<b>
+					<p style="margin: 0 0 0 0;" lang="it">Sesso: </p>
+				</b>
+			</label>
+			<input class="my-input" type="text" size="1" maxlength="1" name="sex" placeholder="sesso"  required>
+			<hr class="my-custom-hr">
+
+			<label for="birthday" class="gradient-text" style="margin: 0 0 0 0;">
+				<b> 
+					<p lang="it">Data di nascita: </p>
+				</b>
+			</label>
+			<input class="my-input-date" type="date" size="40" maxlength="40" name="birthday"  required>
+			<hr class="my-custom-hr">
+
+			<label for="email" class="gradient-text" style="margin: 0 0 0 0;"><b>Email: </b></label>
+			<input class="my-input" type="text" size="40" maxlength="40" name="email" placeholder="email" required>
+			<hr class="my-custom-hr">
+
+			<label for="password" class="gradient-text" style="margin: 0 0 0 0;"><b>Password: </b></label>
+			<input class="my-input" type="password"  name="password" placeholder="password" id="myInput" required>
+			<hr class="my-custom-hr">
+			
+			<label class="container custom-checkbox">
+				<input type="checkbox" onclick="myFunction()">
+				<span class="checkmark"></span>
+				<label class="gradient-text">
+					<p lang="it">mostra password: </p>
+				</label>
+			</label>
+			<!--<input type="checkbox" onclick="myFunction()"><label class="gradient-text" style="margin-left: 5px;">show password</label>-->
+
+			<hr style="border-style: dotted; border-color: #688BE5">
+
+			<p class="gradient-text">By creating an account you agree to our <a href="#" style="border-bottom: 1px solid;">Terms & Privacy</a>.</p>
+			<button lang="it" type="submit" class="my-button" value="create">Registrati</button>
+
+			<li class="dropdown-header" style="text-align:center; margin-top: 10px;">
+				<p lang="it">Hai già un account?<p>
+			</li> 
+			<a href="./loginfailed.html">
+				<p lang="it" style="text-align:center; margin: 0 0 -10px 0;">Accedi</p>
+			</a>
+
+		</div>
+	</form>
+
+	<!--  <span style="display:inline-block"></span>
+
+	<h1>Let's create a new user</h1>
+	<form method="POST" action="CreateUser.do">
+		First name: <input type="text" size="40" maxlength="40" name="firstname"/><br>
+		Last name:  <input type="text" size="40" maxlength="40" name="lastname" /><br>
+		Country:    <input type="text" size="40" maxlength="40" name="country"  /><br> 
+		<input type="SUBMIT" value="create">
+	</form> -->	
+
+</body>
+</html>
+

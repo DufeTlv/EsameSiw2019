@@ -1,0 +1,672 @@
+.gif-box {
+    margin: 0;
+    display: inline-block;
+    height: auto;
+    width: auto;
+}
+
+.gif-box.editor{
+	margin-top:10px;
+	margin-left:-30px;
+}
+
+.gif-icon{
+	position: relative;
+	top: -4px;
+	border: 2px solid #ff9d7d;
+	background-color: #ff9d7d;
+	border-radius: 5px;
+	padding: 1px 1px 2px 1px;
+	font: expanded small-caps bolder 9px/1px Arial, sans-serif;
+	color: white;
+}
+
+.gif-icon:after{
+	content: "gif";
+}
+
+.hexagon {
+	position: relative;
+	width: 85px; 
+	height: 50px;
+	background-color: white;
+	border-radius: 5px;
+	font-size: 20px;
+	margin-top: 25px;
+	margin-bottom: 50px;
+	margin-left: 15px;
+	cursor: pointer;
+
+	transition: all 0.2s ease-out;
+}
+
+.hexagon:before, .hexagon:after {
+	content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: inherit;
+    height: inherit;
+    background-color: inherit;
+    border-radius: inherit;	
+}
+
+.hexagon:before {
+	transform: rotate(60deg);
+}
+
+.hexagon:after {
+	transform: rotate(-60deg);	
+}
+
+.hexagon:hover {
+	animation: color-resize-button 0.2s;
+	width: 102px; 
+	height: 60px;
+	font-size: 25px;
+	background-color: #ffe1d8;
+	color: white;
+}
+@keyframes color-resize-button {
+	from{background-color: white; width: 85px; height: 50px; font-size: 20px;} to{background-color: #ffe1d8; width: 102px; height: 60px; font-size: 25px;}
+}
+
+.hexagon.hex-left:hover {
+	animation: color-resize-button-toleft 0.2s;
+	margin-left: 0px;
+}
+
+@keyframes color-resize-button-toleft {
+	from{background-color: white; width: 85px; height: 50px; font-size: 20px; margin-left: 15px;} to{background-color: #ffe1d8; width: 102px; height: 60px; font-size: 25px; margin-left: 0px;}
+}
+
+.my-button {
+	@include button-reset;
+  	background-color: #ff9d7d;
+  	color: white;
+	margin: 0 auto;
+	border: solid 1px transparent;
+  	border-radius: 4px;
+	cursor: pointer;
+	width: 100%;
+	height: 30px;
+	font-size: 15px;
+}
+
+.my-button:active, .my-circle-button:active {
+	transform: translateY(1px);
+}
+
+.my-button:hover {	
+	color: #ff9d7d;
+    -webkit-background-clip: text;
+    background-clip: text;
+
+	border-color: #ff9d7d;
+	background-image: white;
+}
+
+.my-slidingbutton {
+	@include button-reset;
+	background-color: transparent;
+	color: #ff9d7d;
+	padding: 0;
+	border: transparent;
+	border-radius: 5px 5px 0 0;
+	cursor: pointer;
+	width: 100%;
+	font-size: 20px;
+
+	transition: all 0.2s ease-out;	
+}
+
+.my-slidingbutton:hover, .my-circle-button:hover{
+	animation: colorbutton 0.4s;
+	background-color: #ffe1d8;
+}
+@keyframes colorbutton {
+	from{background-color: white;} to{background-color: #ffe1d8;}
+}
+
+@keyframes opacitybutton {
+	from{opacity: 0;} to{opacity: 1;}
+}
+
+/* non utilizzato da nessuna parte*/
+.my-editor-button{
+	background-color: white;
+	border-radius: 4px;
+	cursor: pointer;
+	
+	transition: all 0.2s ease-out;
+}
+
+.my-editor-button:hover{
+	animation: opacitybutton 0.7s;
+	background-color: #cfcfcf;
+}
+
+.my-animated-div {
+	width: 100%;
+	position: absolute;
+	animation: none;
+}
+@keyframes leftin 	{from{left:40%;  opacity:0} to{left:50%;    opacity:1}}
+@keyframes leftout 	{from{left:50%;    opacity:1} to{left:40%;  opacity:0}}
+@keyframes rightin 	{from{left:60%; opacity:0} to{left:50%;   opacity:1}}
+@keyframes rightout {from{left:50%;   opacity:1} to{left:60%; opacity:0}}
+
+.my-circle-button{
+	width: 100px;
+	height: 30px;
+	border: 1px solid #ff9d7d;
+	border-radius: 20px;
+	background-color: white;
+	color: #ff9d7d;
+	cursor: pointer;
+	
+	transition: all 0.2s ease-out;
+}
+
+.my-expand-button{
+	position: absolute;
+	bottom: 10px;
+	right: 320px;
+	float: right;
+	width: 40px;
+	height: 40px;
+	border: 1px solid #ff9d7d;
+	border-radius: 20px;
+	background-color: white;
+	color: #ff9d7d;
+	cursor: pointer;
+	
+	transition: all 0.2s ease-out;
+}
+
+.my-expand-button:hover{
+	animation: expand 0.2s;
+	width: 160px;
+}
+@keyframes expand { from{width: 40px;} to{width: 160px;} }
+
+.my-expand-div{
+	transition: all 0.2s ease-out;
+}
+@keyframes expand-div { from{width: 40px;} to{width: 460px;} }
+
+
+.my-alert-banner{
+	display:none; 
+	width:100%; 
+	border: 1px dotted white; 
+	color:white; 
+	text-align:center
+}
+
+.my-alert-banner.success{
+	background-color:#48ed42;
+}
+
+.my-alert-banner.error{
+	background-color:#ff6363;
+}
+
+.my-bookmark-button{
+	position: absolute;
+	float: right;
+	right: 20px;
+	width: 0;
+	color: #333333;
+	cursor: pointer;
+
+	border: 20px solid white;
+	border-top: 30px solid white;
+	border-bottom: 20px solid transparent;
+
+	animation-fill-mode: forwards;
+	transition: all 0.2s ease-out;
+}
+
+.my-bookmark-button:before{
+	content: '';
+    display: block;
+    position: absolute;
+    top: -30px;
+    left: -20px;
+    width: 40px;
+    height: 50px;
+    background-color: transparent;
+    border-left: 2px solid #ff9d7d;
+    border-right: 2px solid #ff9d7d;
+    transition: all 0.2s ease-out;
+}
+
+.my-bookmark-button:hover:before{
+	animation: expand-h-b 0.5s;
+	height: 60px;
+	top: -40px;
+}
+@keyframes expand-h-b { 
+	0%   {height: 50px; top: -30px;}
+	40%  {height: 65px; top: -45px;}
+	100% {height: 60px; top: -40px;}
+}
+
+.my-bookmark-button:after{
+	content: '';
+    display: block;
+    position: absolute;
+    top: 5px;
+    left: -14px;
+    width: 28px;
+    height: 28px;
+    background-color: transparent;
+    border-left: 2px solid #ff9d7d;
+    border-top: 2px solid #ff9d7d;
+    transform: rotate(45deg);
+}
+
+.my-bookmark-button:hover{
+	animation: expand-h 0.5s;
+	border-top-width: 40px;
+}
+@keyframes expand-h { 
+	0%   {border-top-width: 30px;}
+	40%  {border-top-width: 45px;}
+	100% {border-top-width: 40px;}
+}
+
+.my-bookmark-bubble{
+	display: none;
+	position: absolute;
+	float: right;
+	top: 15px;
+	right: 40px;
+	width: 1px;
+	height: 1px;
+	border-radius: 100%;
+	background-color: transparent;
+	box-shadow: 0px 0px 0px 15px #ff9d7d;
+
+	transition: all 0.2s ease-out;
+}
+
+@keyframes pop {
+	0%  { width: 1px;	height: 1px; box-shadow: 0px 0px 0px 0px #ff9d7d;   top: 20px;  right: 40px;  } 
+	50% { width: 1px;	height: 1px; box-shadow: 0px 0px 0px 50px #ff9d7d;  top: 20px;  right: 40px;  } 
+	100%{ width: 100px; height: 100px; box-shadow: 0px 0px 0px 0px #ff9d7d; top: -30px; right: -10px; }
+}
+
+input[type="file"] {
+    display: none;
+}
+.custom-file-upload {
+    border: 1px solid #ff9d7d;
+    background-color: #ff9d7d;
+    width: 100%;
+    border-radius: 5px;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    
+    transition: all 0.2s ease-out;	
+}
+.custom-file-upload:hover{
+	background-color: white;
+	color: #ff9d7d;
+}
+
+.my-button.facebook-login{
+	background-color: #3360ff;
+}
+
+.my-button.facebook-login:hover {
+	color: #3360ff;
+	border-color: #3360ff;
+	background-color: white;
+}
+
+.my-button.google-login{
+	background-color: #db4437;
+	border-color: #db4437;
+	color: white;
+}
+
+.my-button.google-login:hover {
+	background-color: white;
+	border-color: #db4437;
+	color: #db4437;
+}
+
+.my-navbar{
+	border-radius: 5px;
+	padding: 0 0 0 0;
+	/*background-color: #1c1c1c;*/
+	background-color: white;
+	
+	position: absolute;
+	top: 3%;
+	left: 5%;
+	width: 90%;
+	height: 7%;
+	font-size: 15px;
+	z-index: 1;
+	display: flex;
+  	align-items: center;
+	/*box-shadow: 0px 0px 0px 1px #e3e3e3 inset;*/
+	border: solid 2px #ff9d7d;
+}
+
+/* custom image slider*/
+.my-slider-container{
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+	
+	overflow: hidden;
+}
+
+.my-container-div{
+	text-align: center;
+	
+	padding:0 0 0 0;
+	font-size:18px;
+	color: #fff;
+}
+
+.my-container-div:before{
+	content: "";
+	display: table;
+	clear: both;
+}
+
+.my-container-div.middle{
+	/*border: solid 1px black;*/
+	position: absolute;	
+	top:50%;
+	left:50%;
+	transform: translate(-50%,-50%);
+	-ms-transform: translate(-50%,-50%);
+}
+
+.my-container-div.bottom-middle{
+	/*border: solid 1px black;*/
+	position: absolute;
+	left:50%;
+	bottom:0;
+	transform: translate(-50%,0%);
+	-ms-transform: translate(-50%,0%);
+}
+
+.top{
+	/*border: solid 1px black;*/
+	position: absolute;	
+	left:50%;
+	transform: translate(-50%,0%);
+	-ms-transform: translate(-50%,0%);
+}
+
+.my-container-div.top-left{
+	border: solid 1px white;
+	position: absolute;	
+	top:10%;
+	left:10%;
+	/*transform: translate(-50%,-50%);
+	-ms-transform: translate(-50%,-50%);*/
+}
+
+.my-container-div.left{
+	/*border: solid 1px black;*/
+	position: absolute;
+	/*top: 50%;*/
+	top: 0;
+	left: 0;
+	height:100%;
+
+    /*transform: translate(0%,-50%);
+	-ms-transform: translate(0%,-50%);*/
+	display: flex;
+}
+
+.my-container-div.right{
+	/*border: solid 1px black;*/
+	position: absolute;
+	top: 0;
+	right: 0;
+	height:100%;
+
+	/*transform: translate(0%,-50%);
+	-ms-transform: translate(0%,-50%);*/
+	display: flex;
+
+}
+
+.soft-blur{
+	-webkit-filter: blur(2px);
+       -moz-filter: blur(2px);
+        -ms-filter: blur(2px);
+         -o-filter: blur(2px);
+            filter: blur(2px);
+}
+
+.my-slider-btn{
+	color: white;
+	border: none;
+	display: flex;
+	width: 100%;
+	background-color: transparent;
+	outline: none;
+
+	padding-bottom: 0%;
+}
+
+.my-slider-btn:hover{
+	color:#A9A9A9;
+}
+
+.leftbtn{
+	float:left;
+}
+
+.leftbtn:hover{
+	background-image: -webkit-linear-gradient(to right, rgba( 255,255,255, 0.3), transparent); /* For Chrome and Safari */
+    background-image:    -moz-linear-gradient(to right, rgba( 255,255,255, 0.3), transparent); /* For old Fx (3.6 to 15) */
+    background-image:     -ms-linear-gradient(to right, rgba( 255,255,255, 0.3), transparent); /* For pre-releases of IE 10*/
+    background-image:      -o-linear-gradient(to right, rgba( 255,255,255, 0.3), transparent); /* For old Opera (11.1 to 12.0) */
+    background-image:         linear-gradient(to right, rgba( 255,255,255, 0.3), transparent); /* Standard syntax; must be last */
+}
+
+.rightbtn{
+	float:right;
+}
+
+.rightbtn:hover{
+	background-image: -webkit-linear-gradient(to left, rgba( 255,255,255, 0.3), transparent); /* For Chrome and Safari */
+    background-image:    -moz-linear-gradient(to left, rgba( 255,255,255, 0.3), transparent); /* For old Fx (3.6 to 15) */
+    background-image:     -ms-linear-gradient(to left, rgba( 255,255,255, 0.3), transparent); /* For pre-releases of IE 10*/
+    background-image:      -o-linear-gradient(to left, rgba( 255,255,255, 0.3), transparent); /* For old Opera (11.1 to 12.0) */
+    background-image:         linear-gradient(to left, rgba( 255,255,255, 0.3), transparent); /* Standard syntax; must be last */
+}
+
+.my-slider-dots{
+	color:#fff;
+	display: inline-block;
+	
+	border-radius:50%;
+
+	border:1px solid #fff;
+	background-color: transparent;
+	
+	padding:5px 5px 5px 5px;
+	box-shadow: 1px 1px 5px black;
+}
+
+.my-slider-dots:hover{
+	color: #000;
+	background-color: #fff;
+}
+
+.my-animate-left   {position:relative;animation:animateleft    0.7s}@keyframes animateleft   {from{left: -100%;opacity:1} to{left:     0;opacity:1}}
+.my-animate-right  {position:relative;animation:animateright   0.7s}@keyframes animateright  {from{right:-100%;opacity:1} to{right:    0;opacity:1}}
+.my-animate-toleft {position:relative;animation:animatetoleft  0.7s}@keyframes animatetoleft {from{left:     0;opacity:1} to{left: -100%;opacity:1}}
+.my-animate-toright{position:relative;animation:animatetoright 0.7s}@keyframes animatetoright{from{right:    0;opacity:1} to{right:-100%;opacity:1}}
+
+.mySlides {display: block;}
+.w3-left, .w3-right, .my-slider-dots {cursor:pointer}
+
+.footer {
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 10%;
+	background-color: #222222;
+	color: white;
+	text-align: center;
+}
+
+.sub-menu-parent { position: relative; }
+
+.sub-menu { 
+	visibility: hidden; /* hides sub-menu */
+	opacity: 0;
+	position: absolute;
+	padding: 1em 1em 1em 2em; 
+	top: 100%;
+	left: -50%;
+	width: auto;
+	transform: translateY(+2em);
+	z-index: 1;
+	transition: all 0.3s ease-in-out 0s, visibility 0s linear 0.3s, z-index 0s linear 0.01s;
+	border-radius: 6px;
+	background: white;
+}
+
+.sub-menu-parent:focus .sub-menu,
+.sub-menu-parent:focus-within .sub-menu,
+.sub-menu-parent:hover .sub-menu {
+	visibility: visible; /* shows sub-menu */
+	opacity: 1;
+	z-index: 1;
+	transform: translateY(1%);
+	transition-delay: 0s, 0s, 0.3s; /* this removes the transition delay so the menu will be visible while the other styles transition */
+}
+
+/* what follows was created mainly for the createuser page */
+.container.my-container {
+	padding: 20px 60px 40px 60px;
+	background: white;
+	border-radius: 6px;
+
+}
+.container.my-input-container{
+	width: 100%;
+	padding: 0 0 0 0;
+}
+
+/* da implementare via js*/
+.height-transition{
+	-webkit-transition: height 1s;
+  	-moz-transition:    height 1s;
+  	-o-transition: 		height 1s;
+  	transition: 		height 1s;
+
+	/*overflow:hidden;
+  	transition:transform 4s ease-out; // note that we're transitioning transform, not height!
+  	height:auto;
+  	transform:scaleY(1); // implicit, but good to specify explicitly
+  	transform-origin:top; // keep the top of the element in the same place. this is optional.*/
+}
+
+/* anche questo da eliminare */
+.my-custom-hr{
+	border-style: solid;
+  	height: 2px;
+	margin: -5px 0 10px 0;
+
+	background: -webkit-linear-gradient(to bottom right, #00BFFF, #7B68EE); /* For Chrome and Safari */
+    background:    -moz-linear-gradient(to bottom right, #00BFFF, #7B68EE); /* For old Fx (3.6 to 15) */
+    background:     -ms-linear-gradient(to bottom right, #00BFFF, #7B68EE); /* For pre-releases of IE 10*/
+    background:      -o-linear-gradient(to bottom right, #00BFFF, #7B68EE); /* For old Opera (11.1 to 12.0) */
+    background:         linear-gradient(to bottom right, #00BFFF, #7B68EE); /* Standard syntax; must be last */
+}
+
+.cyan-shell-gradient-background{
+	background-image: -webkit-linear-gradient(to bottom right, #8ae1f2, #a0e0e0); /* For Chrome and Safari */
+    background-image:    -moz-linear-gradient(to bottom right, #8ae1f2, #a0e0e0); /* For old Fx (3.6 to 15) */
+    background-image:     -ms-linear-gradient(to bottom right, #8ae1f2, #a0e0e0); /* For pre-releases of IE 10*/
+    background-image:      -o-linear-gradient(to bottom right, #8ae1f2, #a0e0e0); /* For old Opera (11.1 to 12.0) */
+    background-image:         linear-gradient(to bottom right, #8ae1f2, #a0e0e0); /* Standard syntax; must be last */
+	
+	height: 100%;
+    margin: 0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+input[type=text].my-input, input[type=password].my-input, input[type="date"].my-input-date {
+	width: 100%;
+	padding: 5px;
+	margin-bottom: 5px;
+	display: inline-block;
+	border: 1px solid gray;
+	color: #333333;
+	border-radius: 4px;
+	outline: none;
+}
+
+input:required {
+    box-shadow:none;
+}
+
+input.my-input:focus, div.my-input:focus-within {
+    box-shadow: 0 0 5px #ff9d7d;
+	border-color: #ff9d7d;
+	outline: none;
+}
+
+[contenteditable="true"]{
+	padding: 5px;
+}
+
+[contenteditable="true"]:active, [contenteditable="true"]:focus{
+	border-color: #ff9d7d;
+	outline:none;
+}
+
+[contenteditable="true"][placeholder]:empty::before {
+    content: attr(placeholder);
+    color: #AAAAAA;
+}
+
+[contenteditable="true"][placeholder]:empty:focus::before {
+    content: "";
+}
+
+input[type=text].my-input.my-input-transparent{
+	color: #00BFFF;
+	background: transparent;
+}
+
+input[type="date"].my-input-date {
+	background:#fff url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png) 90% 50% no-repeat;
+}
+input[type="date"]::-webkit-inner-spin-button {
+	display: none;
+}
+input[type="date"]::-webkit-calendar-picker-indicator {
+ 	opacity: 0;
+}
+
+input[type=text].my-input::placeholder, input[type=password].my-input::placeholder, input[type="date"].my-input-date::placeholder {
+	color: #ccc;
+	opacity: 1; /* Firefox */
+}
+
+input[type=text].my-input::-ms-input-placeholder, input[type=password].my-input::-ms-input-placeholder, input[type="date"].my-input-date::-ms-input-placeholder {
+	color: #ccc;
+}
