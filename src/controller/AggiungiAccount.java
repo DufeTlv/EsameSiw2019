@@ -22,7 +22,7 @@ import persistence.dao.AccountDao;
 /**
  * Servlet implementation class AddUser
  */
-@WebServlet("/CreateUser.do")
+@WebServlet("/AggiungiAccount")
 public class AggiungiAccount extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     

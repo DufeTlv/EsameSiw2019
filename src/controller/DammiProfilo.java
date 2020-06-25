@@ -16,13 +16,20 @@ import javax.servlet.http.HttpServletResponse;
 public class DammiProfilo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		request.getSession().setAttribute("username", request.getParameter("username"));
-		
-		RequestDispatcher rd = request.getRequestDispatcher("profile.jsp");
-		rd.forward(request, response);
+		if(req.getSession().getAttribute("username") == null) {
+			RequestDispatcher rd = req.getRequestDispatcher("loginfailed.html");
+			rd.forward(req, resp);
+		}else {
+			//request.getSession().setAttribute("username", request.getParameter("username"));
+			//getServletContext().setAttribute("username", getServletContext().getAttribute("username"));
+			req.getSession().setAttribute("username", req.getSession().getAttribute("username"));
+			
+			RequestDispatcher rd = req.getRequestDispatcher("profile.jsp");
+			rd.forward(req, resp);
+		}
 	}
 
 }

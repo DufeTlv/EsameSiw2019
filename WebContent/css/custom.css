@@ -582,19 +582,6 @@ input[type="file"] {
   	transform-origin:top; // keep the top of the element in the same place. this is optional.*/
 }
 
-/* anche questo da eliminare */
-.my-custom-hr{
-	border-style: solid;
-  	height: 2px;
-	margin: -5px 0 10px 0;
-
-	background: -webkit-linear-gradient(to bottom right, #00BFFF, #7B68EE); /* For Chrome and Safari */
-    background:    -moz-linear-gradient(to bottom right, #00BFFF, #7B68EE); /* For old Fx (3.6 to 15) */
-    background:     -ms-linear-gradient(to bottom right, #00BFFF, #7B68EE); /* For pre-releases of IE 10*/
-    background:      -o-linear-gradient(to bottom right, #00BFFF, #7B68EE); /* For old Opera (11.1 to 12.0) */
-    background:         linear-gradient(to bottom right, #00BFFF, #7B68EE); /* Standard syntax; must be last */
-}
-
 .cyan-shell-gradient-background{
 	background-image: -webkit-linear-gradient(to bottom right, #8ae1f2, #a0e0e0); /* For Chrome and Safari */
     background-image:    -moz-linear-gradient(to bottom right, #8ae1f2, #a0e0e0); /* For old Fx (3.6 to 15) */
@@ -652,12 +639,18 @@ input[type=text].my-input.my-input-transparent{
 	background: transparent;
 }
 
+/*input[type="date"].my-input-date {
+	background:#fff url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png) 98% 50% no-repeat;
+}*/
+
 input[type="date"].my-input-date {
-	background:#fff url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png) 90% 50% no-repeat;
+	background:#fff url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/eye_eyeball_view_icon.png) 90% 50% no-repeat;
 }
+
 input[type="date"]::-webkit-inner-spin-button {
 	display: none;
 }
+
 input[type="date"]::-webkit-calendar-picker-indicator {
  	opacity: 0;
 }

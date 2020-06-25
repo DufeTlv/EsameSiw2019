@@ -58,7 +58,7 @@ public class DammiIngredienti extends HttpServlet {
 			
 			jsonObject.put("udm", array);
 			
-			System.out.println(jsonObject.toString());
+			//System.out.println(jsonObject.toString());
 			
 			JSONObject json = new JSONObject(jsonObject.toString());
 			//System.out.println("stampaprova (ingr):");

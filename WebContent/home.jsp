@@ -28,23 +28,25 @@
 	
 	<!-- side nav menu -->
 	<div style="position:fixed; top:4%; left:14%; border: 1px solid transparent; color: #ff9d7d;">
-		<div class="hexagon hex-left" style="left: 0%;"> <!-- "/myServlets/DBselTankList.java" -->
+		<div id="home" class="hexagon hex-left" style="left: 0%;">
 			<div style="position:absolute; z-index:2; font-family:'Pacifico'; left:38%; top:15%;">F</div>
+			<form method="POST" action="DammiHome" style="display:none;"></form>
 		</div>
-		<div onclick="this.childNodes[3].submit();" class="hexagon" style="left: 0%; margin-top:-15px; margin-left:60px;">
+		<div id="search" class="hexagon" style="left: 0%; margin-top:-15px; margin-left:60px;">
 			<div style="position:absolute; z-index:2; font-family:'Pacifico'; left:38%; top:15%;"><span class="fas fa-search"></span></div>
-			<form method="POST" action="DammiRicerca" style="display:none;"><input type="hidden" name="username" value='${username}'></form>
+			<form method="POST" action="DammiRicerca" style="display:none;"></form>
 		</div>
-		<div onclick="this.childNodes[3].submit();" class="hexagon hex-left" style="left: 0%; margin-top:-15px;">
+		<div id="profile" class="hexagon hex-left" style="left: 0%; margin-top:-15px;">
 			<div style="position:absolute; z-index:2; font-family:'Pacifico'; left:38%; top:15%;"><span class="fas fa-user"></span></div>
-			<form method="POST" action="DammiProfilo" style="display:none;"><input type="hidden" name="username" value='${username}'></form>
+			<form method="POST" action="DammiProfilo" style="display:none;"></form>
 		</div>
-		<div onclick="this.childNodes[3].submit();" class="hexagon" style="left: 0%; margin-top:-15px; margin-left:60px;">
+		<div id="settings" class="hexagon" style="left: 0%; margin-top:-15px; margin-left:60px;">
 			<div style="position:absolute; z-index:2; font-family:'Pacifico'; left:38%; top:15%;"><span class="fas fa-cog"></span></div>
-			<form method="POST" action="DammiImpostazioni" style="display:none;"><input type="hidden" name="username" value='${username}'></form>
+			<form method="POST" action="DammiImpostazioni" style="display:none;"></form>
 		</div>
-		<div class="hexagon hex-left" style="left: 0%; margin-top:-15px;">
+		<div id="logout" class="hexagon hex-left" style="left: 0%; margin-top:-15px;">
 			<div style="position:absolute; z-index:2; font-family:'Pacifico'; left:38%; top:15%;"><span class="fas fa-sign-out-alt"></span></div>
+			<form method="GET" action="Logout" style="display:none;"></form>
 		</div>
 	</div>
 	
@@ -60,11 +62,8 @@
 	<div style="position: absolute; top:10%; right:10%;">			
 		<c:if test="${username != null}">
 			<p>Sei loggato come </p><p id="username" >${username}</p>
-			<a href="doLogin?logout=true">Logout</a>
-		</c:if>
-		<c:if test="${username == null}">
-			<a href="doLogin">Login</a>
-		</c:if>				
+			<a href="./index.html">Logout</a>
+		</c:if>			
 
 		<p>
 			User-name: <% out.print(username); %><br>
@@ -172,6 +171,7 @@
 		</div>
 	</div>
 
+	<script type="text/javascript" src="js/sideMenu.js" ></script>
 	<script type="text/javascript" src="js/gestioneFeed.js" ></script>
   	<script type="text/javascript" src="js/gestioneFormRicette.js" ></script>
 	<script>	
@@ -183,7 +183,12 @@
 			   if($(window).scrollTop() + $(window).height() == $(document).height()) {
 				   getRicette();
 			   }
-		});		
+		});
+		
+		function goToHome () { 
+		    window.location.href = './Login';
+		};
+		
 
 	</script>
 </body>

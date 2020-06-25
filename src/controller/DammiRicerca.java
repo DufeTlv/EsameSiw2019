@@ -18,10 +18,14 @@ public class DammiRicerca extends HttpServlet {
     
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getSession().setAttribute("username", request.getParameter("username"));
+		
+		request.getSession().setAttribute("username", request.getSession().getAttribute("username"));
+		
+		//getServletContext().setAttribute("username", getServletContext().getAttribute("username"));
 		
 		RequestDispatcher rd = request.getRequestDispatcher("search.jsp");
 		rd.forward(request, response);
+		
 	}
 
 }

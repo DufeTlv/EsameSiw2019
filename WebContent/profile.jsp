@@ -25,21 +25,27 @@
 <body class="cyan-shell-gradient-background it">
 	<% String username = request.getParameter("username");%> 
 	
+	<!-- side nav menu -->
 	<div style="position:fixed; top:4%; left:14%; border: 1px solid transparent; color: #ff9d7d;">
-		<div class="hexagon hex-left" style="left: 0%;">
-			<div style="position:absolute; z-index: 2;font-family: 'Pacifico'; left:38%; top: 15%;">F</div>
+		<div id="home" class="hexagon hex-left" style="left: 0%;">
+			<div style="position:absolute; z-index:2; font-family:'Pacifico'; left:38%; top:15%;">F</div>
+			<form method="POST" action="DammiHome" style="display:none;"></form>
 		</div>
-		<div class="hexagon" style="left: 0%; margin-top:-15px; margin-left:60px;">
-			<div style="position:absolute; z-index: 2;font-family: 'Pacifico'; left:38%; top: 15%;"><span class="fas fa-search"></span></div>
+		<div id="search" class="hexagon" style="left: 0%; margin-top:-15px; margin-left:60px;">
+			<div style="position:absolute; z-index:2; font-family:'Pacifico'; left:38%; top:15%;"><span class="fas fa-search"></span></div>
+			<form method="POST" action="DammiRicerca" style="display:none;"></form>
 		</div>
-		<div class="hexagon hex-left" style="left: 0%; margin-top:-15px;">
-			<div style="position:absolute; z-index: 2;font-family: 'Pacifico'; left:38%; top: 15%;"><span class="fas fa-user"></span></div> <!-- glyphicon glyphicon-user -->
+		<div id="profile" class="hexagon hex-left" style="left: 0%; margin-top:-15px;">
+			<div style="position:absolute; z-index:2; font-family:'Pacifico'; left:38%; top:15%;"><span class="fas fa-user"></span></div>
+			<form method="POST" action="DammiProfilo" style="display:none;"></form>
 		</div>
-		<div class="hexagon" style="left: 0%; margin-top:-15px; margin-left:60px;">
-			<div style="position:absolute; z-index: 2;font-family: 'Pacifico'; left:38%; top: 15%;"><span class="fas fa-cog"></span></div>
+		<div id="settings" class="hexagon" style="left: 0%; margin-top:-15px; margin-left:60px;">
+			<div style="position:absolute; z-index:2; font-family:'Pacifico'; left:38%; top:15%;"><span class="fas fa-cog"></span></div>
+			<form method="POST" action="DammiImpostazioni" style="display:none;"></form>
 		</div>
-		<div class="hexagon hex-left" style="left: 0%; margin-top:-15px;">
-			<div style="position:absolute; z-index: 2;font-family: 'Pacifico'; left:38%; top: 15%;"><span class="fas fa-sign-out-alt"></span></div>
+		<div id="logout" class="hexagon hex-left" style="left: 0%; margin-top:-15px;">
+			<div style="position:absolute; z-index:2; font-family:'Pacifico'; left:38%; top:15%;"><span class="fas fa-sign-out-alt"></span></div>
+			<form method="GET" action="Logout" style="display:none;"></form>
 		</div>
 	</div>
 
@@ -67,6 +73,7 @@
 		
 	</div>
 
+	<script type="text/javascript" src="js/sideMenu.js" ></script>
 	<script type="text/javascript">
 	
 		// old blue color: "rgba( 71, 190, 214, 0.3)";

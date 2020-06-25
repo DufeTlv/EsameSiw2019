@@ -32,6 +32,9 @@ public class DammiRicettaCompleta extends HttpServlet {
 		Long idRicetta = Long.parseLong(request.getParameter("id_ricetta"));
 		Ricetta ricetta = DatabaseManager.getInstance().getDaoFactory().getRicettaDAO().findByPrimaryKey(idRicetta);
 		
+		Long idAccount = DatabaseManager.getInstance().getDaoFactory().getAccountDAO().findByEmail((String) request.getSession().getAttribute("username")).getId();
+		request.getSession().setAttribute("edit", (idAccount == ricetta.getAccountId()) );
+		
 		request.getSession().setAttribute("ricetta_id", ricetta.getId());
 		request.getSession().setAttribute("titolo", ricetta.getTitolo());
 		request.getSession().setAttribute("difficolta",ricetta.getDifficolta()); //(ricetta.getDifficolta() == 0)? "Facile" :(ricetta.getDifficolta() == 1)? "Media": "Difficile");
@@ -40,7 +43,7 @@ public class DammiRicettaCompleta extends HttpServlet {
 		request.getSession().setAttribute("imgurl", ricetta.getImageUrl());
 		
 		List<Quantita> quantita = DatabaseManager.getInstance().getDaoFactory().getQuantitaDAO().findAllByRicettaId(idRicetta);
-		System.out.println(quantita.get(0).getValore());
+		//System.out.println(quantita.get(0).getValore());
 		request.getSession().setAttribute("quantitalist", quantita);
 		
 		List<Ingrediente> ingredienti = new ArrayList<>();
@@ -57,7 +60,7 @@ public class DammiRicettaCompleta extends HttpServlet {
 		List<UnitaDiMisura> unitaDiMisura = DatabaseManager.getInstance().getDaoFactory().getUnitaDiMisuraDAO().findAll();
 		request.getSession().setAttribute("udmlist", unitaDiMisura);
 		
-		System.out.println(idRicetta);
+		//System.out.println(idRicetta);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("recipe.jsp");
 		rd.forward(request, response);

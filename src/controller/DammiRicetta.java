@@ -40,7 +40,7 @@ public class DammiRicetta extends HttpServlet {
 		
 		BufferedReader reader = new BufferedReader(new InputStreamReader(request.getInputStream()));
 		String jsonReceived = reader.readLine();
-		System.out.println(jsonReceived);
+		//System.out.println(jsonReceived);
 		//System.out.println(ricette.size());
 		try {
 			JSONObject json = new JSONObject(jsonReceived);

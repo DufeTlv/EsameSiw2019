@@ -18,60 +18,39 @@
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
 </head>
-<body class="gradient-background it">
+<body class="cyan-shell-gradient-background it">
 
-<nav class="navbar navbar-inverse my-navbar">
- 	<div class="container-fluid">
-		<div class="navbar-header">
-			<a style="font-family: 'Fredericka the Great', cursive;" class="navbar-brand" href="./index.html">FOODBALANCE</a>
-    	</div>
-
-		<select style="margin-top: 10px;" class="selectpicker" data-width="fit">
-   			<option onclick="document.body.className='gradient-background it'"> Italiano</option>
- 			<option onclick="document.body.className='gradient-background en'"> English</option>
-		</select>
-	</div>
-</nav>
-
-<form method="POST" action="Login" style="margin: 20px 0 20px 0;">
-	<div class="container my-container">
-
-		<h1 class="gradient-text">
-			<p lang="it">Accedi</p>
-			<p lang="en">Login</p>
-		</h1>
-
-		<hr style="border-style: dotted; border-color: #688BE5;">
-
-		<label for="email" class="gradient-text" style="padding: 5px 0 0 0;"><b>Email: </b></label>
-		<input class="my-input" name="username" type="text" size="40" maxlength="40" name="email" placeholder="email" required>
-		<hr class="my-custom-hr">
-
-		<label for="password" class="gradient-text" style="padding: 5px 0 0 0;"><b>Password: </b></label>
-		<input class="my-input" name="password" type="password" placeholder="password" id="myInput">
-		<hr class="my-custom-hr">
-		<label class="container custom-checkbox">
-			<input type="checkbox" onclick="myFunction()">
-			<span class="checkmark"></span>
-			<label class="gradient-text">show password</label>
-		</label>
-		<a href="#" style="font-size:13px;"><p style="text-align:right; padding: -5px 0 0 0;">forgot yout password?</p></a>
-		
-		<span style="display:inline-block"></span>
-		<button lang="it" type="submit" class="my-button my-gradient-btn">Accedi</button>
-		<button lang="en" type="submit" class="my-button my-gradient-btn">Login</button>
-		<span style="display:inline-block"></span>
-		<li class="dropdown-header" style="text-align:center;">Oppure</li> 
-		<button lang="it" type="submit" class="my-button facebook-login"><i class="fa fa-facebook-square"></i> Accedi con Facebook</button>
-		<button lang="en" type="submit" class="my-button facebook-login"><i class="fa fa-facebook-square"></i> Login with Facebook</button>
-		<button lang="it" type="submit" class="my-button google-login" style="margin-top :5px;"><i class="fa fa-google"></i> Accedi con Google</button>
-		<button lang="en" type="submit" class="my-button google-login" style="margin-top :5px;"><i class="fa fa-google"></i> Login with Google</button>
-		
-		<li class="dropdown-header" style="text-align:center; margin-top: 10px;">Non hai ancora un account?</li> 
-		<a href="./createuser.html"><p style="text-align:center; margin: 0 0 -10px 0;">Registrati</p></a>
-
-	</div>
-</form>
+	<form method="POST" action="Home">
+		<div class="container my-container top" style=" width:35%; margin: 20px 0 20px 0; border:solid 1px transparent;">
+	
+			<h1 class="gradient-text">Accedi</h1>
+	
+			<hr style="border-style: dotted; border-color: #688BE5;">
+	
+			<label for="email" class="gradient-text" style="padding: 5px 0 0 0;"><b>Email: </b></label>
+			<input class="my-input" name="username" type="text" size="40" maxlength="40" name="email" placeholder="email" required>
+	
+			<label for="password" class="gradient-text" style="padding: 5px 0 0 0;"><b>Password: </b></label>
+			<input class="my-input" name="password" type="password" placeholder="password" id="myInput">
+			
+			<label class="container custom-checkbox">
+				<input type="checkbox" onclick="myFunction()">
+				<span class="checkmark"></span>
+				<label class="gradient-text">mostra password</label>
+			</label>
+			<a href="#" style="font-size:13px;"><p style="text-align:right; padding: -5px 0 0 0;">password dimenticata?</p></a>
+			
+			<button type="submit" class="my-button my-gradient-btn">Accedi</button>
+			
+			<li class="dropdown-header" style="text-align:center;">Oppure</li> 
+			<button type="submit" class="my-button facebook-login"><i class="fa fa-facebook-square"></i> Accedi con Facebook</button>
+			<button type="submit" class="my-button google-login" style="margin-top :5px;"><i class="fa fa-google"></i> Accedi con Google</button>
+			
+			<p class="dropdown-header" style="text-align:center; margin-top: 10px;">Non hai ancora un account?<p>
+			<a href="./createuser.html" style="text-align:center; margin: 0 0 -10px 0;">Registrati</a>
+	
+		</div>
+	</form>
 
 </body>
 </html>
