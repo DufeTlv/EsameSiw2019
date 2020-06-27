@@ -33,7 +33,9 @@ public class DammiRicettePreferite extends HttpServlet {
 		
 		try {
 			JSONObject json = new JSONObject(jsonReceived);
-			long account_id = DatabaseManager.getInstance().getDaoFactory().getAccountDAO().findByEmail(json.getString("account_id")).getId();
+			
+			Long account_id = DatabaseManager.getInstance().getDaoFactory().getAccountDAO().retrieveIdByEmail((String) request.getSession().getAttribute("username"));
+			
 			List<Preferito> preferiti = DatabaseManager.getInstance().getDaoFactory().getPreferitoDAO().retrieveGradually(account_id, json.getInt("offset"));
 			//Creating a JSONObject object
 		    JSONObject jsonObject = new JSONObject();
@@ -50,16 +52,13 @@ public class DammiRicettePreferite extends HttpServlet {
 			   record.put("tempo", ricetta.getTempo());
 			   record.put("imageurl", ricetta.getImageUrl());
 			   
-			   if(DatabaseManager.getInstance().getDaoFactory().getPreferitoDAO().findByIdRicetta(ricetta.getId()) != null)
-				   record.put("preferito", "1");
-			   else
-				   record.put("preferito", "0");
+			   record.put("preferito", "1");
 			  
 			   array.put(record);
 			}
 			
 			jsonObject.put("ricetta", array);
-			
+			System.out.println(preferiti.size());
 			response.getWriter().println(jsonObject.toString());
 		
 		} catch (JSONException e) {

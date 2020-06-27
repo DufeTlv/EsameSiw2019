@@ -26,8 +26,32 @@
 	<% String username = request.getParameter("username"); %>
 	<input id="username" type="hidden" value="${username}">
 	
-	<div style="margin: 20px 0 20px 0; height:500px; border: 1px solid black;"> 
-		<div class="container my-container" style="width:40%; height:100%; padding: 0 0 0 0">
+	<!-- side nav menu -->
+	<div style="position:fixed; top:4%; left:14%; border: 1px solid transparent; color: #ff9d7d;">
+		<div id="home" class="hexagon hex-left" style="left: 0%;">
+			<div style="position:absolute; z-index:2; font-family:'Pacifico'; left:38%; top:15%;">F</div>
+			<form method="POST" action="DammiHome" style="display:none;"></form>
+		</div>
+		<div id="search" class="hexagon" style="left: 0%; margin-top:-15px; margin-left:60px;">
+			<div style="position:absolute; z-index:2; font-family:'Pacifico'; left:38%; top:15%;"><span class="fas fa-search"></span></div>
+			<form method="POST" action="DammiRicerca" style="display:none;"></form>
+		</div>
+		<div id="profile" class="hexagon hex-left" style="left: 0%; margin-top:-15px;">
+			<div style="position:absolute; z-index:2; font-family:'Pacifico'; left:38%; top:15%;"><span class="fas fa-user"></span></div>
+			<form method="POST" action="DammiProfilo" style="display:none;"></form>
+		</div>
+		<div id="settings" class="hexagon" style="left: 0%; margin-top:-15px; margin-left:60px;">
+			<div style="position:absolute; z-index:2; font-family:'Pacifico'; left:38%; top:15%;"><span class="fas fa-cog"></span></div>
+			<form method="POST" action="DammiImpostazioni" style="display:none;"></form>
+		</div>
+		<div id="logout" class="hexagon hex-left" style="left: 0%; margin-top:-15px;">
+			<div style="position:absolute; z-index:2; font-family:'Pacifico'; left:38%; top:15%;"><span class="fas fa-sign-out-alt"></span></div>
+			<form method="GET" action="Logout" style="display:none;"></form>
+		</div>
+	</div>
+	
+	<div class="top" style="margin: 40px 0 20px 0; width:40%; height:500px; border: 1px solid transparent;"> 
+		<div class="container my-container" style="width:100%; height:100%; padding: 0 0 0 0">
 			<div style="float:left; width:40%; height:100%;">
 				<p style="margin:10px 0 0 0; padding-bottom:10px; border-bottom: 1px dotted black; text-align:center; font-size: 20px; font-family:'Pacifico';">Impostazioni: </p>
 				<button id="accountBtn" class="my-slidingbutton" style="font-family:'Pacifico'; height:40px; border-radius:0px;">Account: </button>
@@ -107,6 +131,7 @@
 		</div>
 	</div>
 	
+	<script type="text/javascript" src="js/sideMenu.js" ></script>
 	<script type="text/javascript" src="js/impostazioni.js" ></script>
 </body>
 

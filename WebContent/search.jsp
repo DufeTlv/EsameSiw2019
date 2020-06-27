@@ -51,7 +51,7 @@
 	</div>
 	
 	<div id="feed" class="top" style=" width:35%; border:solid 1px transparent;"> <!-- border-color -->
-		<div class="container my-container" style="width:100%; margin: 20px 0 20px 0;">
+		<div class="container my-container" style="width:100%; margin: 40px 0 20px 0;">
 			<div style="width:40%; padding: 20px;">
 				<p id="username-label" style="font-family: 'Pacifico';">${username}</p>
 			</div>
@@ -78,11 +78,11 @@
 			
 			clearFeed();
 			
-			var jsonObj = '{ "search": "' + document.getElementById("ricerca").value + '"}';
+			var jsonObj = '{"search": "' + document.getElementById("ricerca").value + '"}';
 						
 			$.ajax({
 				type: "POST",
-				url: "DammiRicettaRicerca",
+				url: "DammiRicetteRicerca",
 				datatype: "json",
 				data: jsonObj,
 				success: function (resp){

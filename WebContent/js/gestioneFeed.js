@@ -1,20 +1,111 @@
+var seldiv = 'feed';
 
+$(document).ready(
+		setProfileButtons(),
+		getRicette()
+		);
 
+function setProfileButtons(){
+	
+	var mie = document.getElementById("mie");
+	if(mie != null){
+		mie.addEventListener("webkitAnimationEnd", function(){
+			if( mie.style.animationName == "leftout" ){
+				mie.style.display = "none"; 
+				//alert("end of mie animation");
+			}
+		});
+	}
+
+	var pref = document.getElementById("preferite");
+	if(pref != null){
+		pref.addEventListener("webkitAnimationEnd", function(){
+			if( pref.style.animationName == "rightout" ){
+				pref.style.display = "none"; 
+				//alert("end of pref animation");
+			}
+		});
+	}
+	
+	if(document.getElementById("btnmie") != null){
+		seldiv = 'mie';
+		
+		document.getElementById("btnmie").addEventListener('click', function(){
+			mostraMie();
+		});
+	}
+	
+	if(document.getElementById("btnpref") != null){
+		document.getElementById("btnpref").addEventListener('click', function(){
+			mostraPreferiti();
+		});
+	}
+}
+
+function mostraMie(){
+	
+	var mie  = document.getElementById("mie");
+	var pref = document.getElementById("preferite");
+
+	document.getElementById("btnpref").style.backgroundColor = "";
+
+	mie.style.display = "block";
+
+	mie.style.animation = "leftin 0.7s";
+	pref.style.animation = "rightout 0.3s";
+
+	$("#slider").animate({left: '0%'}, 200);
+
+	document.getElementById("btnmie").style.backgroundColor = "#ffe1d8";
+	
+	seldiv = 'mie';
+	
+}
+
+function mostraPreferiti(){
+	
+	var mie  = document.getElementById("mie");
+	var pref = document.getElementById("preferite");
+
+	document.getElementById("btnmie").style.backgroundColor = "";
+
+	pref.style.display = "block";
+
+	mie.style.animation = "leftout 0.3s";
+	pref.style.animation = "rightin 0.7s";
+
+	
+	$("#slider").animate({left: '50%'}, 200);
+
+	document.getElementById("btnpref").style.backgroundColor = "#ffe1d8";
+	
+	seldiv = 'preferite';
+	
+	if(document.getElementsByClassName('preferite').length == 0)
+		getRicette();
+
+}
 
 function getRicette(){			    
 	    
-	var id;
-	if(document.getElementsByClassName("feedForms").length < 1){
-		id = -1;
+	
+	var jsonObj;
+	
+	if(seldiv != "preferite"){
+		var id;
+		if(document.getElementsByClassName(seldiv).length < 1){
+			id = -1;
+		}else{
+			id = document.getElementsByClassName(seldiv)[(document.getElementsByClassName(seldiv).length)-1].id;
+		}
+		jsonObj = '{"id":' + id + ', "action":' + ((seldiv == "feed")? 0 : 1 ) + '}';
 	}else{
-		id = document.getElementsByClassName("feedForms")[(document.getElementsByClassName("feedForms").length)-1].id;
+		jsonObj = '{"offset":' + document.getElementsByClassName(seldiv).length + '}';
 	}
 	
-	var jsonObj = '{"id":' + id + '}';
-		
 	$.ajax({
 		type: "POST",
-		url : 'DammiRicetta',
+		url : (seldiv == "feed")? 'DammiRicette': (seldiv == "mie")? 'DammiRicette' : 'DammiRicettePreferite',
 		datatype: "json",
 		data: jsonObj,
 		success : function(responseText) {
@@ -24,7 +115,7 @@ function getRicette(){
 			if(ricette.ricetta.length > 0){
 				aggiungiPost(ricette.ricetta.length);
 				
-				var forms = document.getElementsByClassName("feedForms");	
+				var forms = document.getElementsByClassName(seldiv);	
 				
 				var i = 0;
 				var j = 0;
@@ -35,7 +126,7 @@ function getRicette(){
 					forms[i].childNodes[1].value = ricette.ricetta[j].id;
 					
 					forms[i].childNodes[0].childNodes[0].childNodes[0].innerHTML = ricette.ricetta[j].titolo;
-					forms[i].childNodes[0].childNodes[0].childNodes[1].innerHTML = "<span style='color:#ff9d7d;'>Difficoltà: </span>" + ricette.ricetta[j].difficolta;
+					forms[i].childNodes[0].childNodes[0].childNodes[1].innerHTML = "<span style='color:#ff9d7d;'>Difficolta: </span>" + ricette.ricetta[j].difficolta;
 					forms[i].childNodes[0].childNodes[0].childNodes[2].innerHTML = "<span style='color:#ff9d7d;'>Tempo: </span>" + ricette.ricetta[j].tempo;
 					
 					if(ricette.ricetta[j].imageurl != null)
@@ -73,7 +164,7 @@ function aggiungiPost(n){
 	*/
 	for(var i=0; i<n; i++){
 		var form = document.createElement("form");
-		form.className = "feedForms";
+		form.className = "feedForms " + seldiv;
 		form.action = "DammiRicettaCompleta";
 		form.method = "POST";
 		form.style.width = "100%";
@@ -125,15 +216,15 @@ function aggiungiPost(n){
 
 		favChild.addEventListener('click', function(){
 			var t = this;
-			var b = t.style.borderTopColor == "white";
-			var jsonObj = '{"action":"'+ ((b)? "add" : "remove") +'", "account_id":"'+ document.getElementById("username-label").innerHTML +'", "ricetta_id":"'+ t.parentNode.parentNode.parentNode.childNodes[1].value +'"}';
+			var jsonObj = '{"ricetta_id":"'+ t.parentNode.parentNode.parentNode.childNodes[1].value +'"}';
 			$.ajax({
 				type: "POST",
 				url: "AggiungiRimuoviPreferiti",
 				datatype: "json",
 				data: jsonObj,
-				success: function (){
-					if(b){
+				success: function (responseText){
+					var p = JSON.parse(responseText);
+					if(p.p == "false"){
 						t.parentNode.parentNode.childNodes[2].style.display = "block";
 						t.parentNode.parentNode.childNodes[2].style.animation = "pop 0.7s";
 						
@@ -186,7 +277,6 @@ function aggiungiPost(n){
 		form.append(newChild);
 		form.append(hiddenInput);				
 
-		document.getElementById("feed").appendChild(form);
-		//document.body.appendChild(form);
+		document.getElementById(seldiv).appendChild(form);
 	}
 }

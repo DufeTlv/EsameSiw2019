@@ -24,7 +24,7 @@
   	
 </head>
 <body class="cyan-shell-gradient-background it">
-	<% String username = request.getParameter("username"); %> <!-- out.print(username); -->
+	<% String username = (String) request.getSession().getAttribute("username"); %> <!-- out.print(username); -->
 	
 	<!-- side nav menu -->
 	<div style="position:fixed; top:4%; left:14%; border: 1px solid transparent; color: #ff9d7d;">
@@ -51,7 +51,7 @@
 	</div>
 	
 	<div id="feed" class="top" style=" width:35%; border:solid 1px transparent;"> <!-- border-color -->
-		<div class="container my-container" style="width:100%; margin: 20px 0 20px 0;">
+		<div class="container my-container" style="width:100%; margin: 40px 0 20px 0;">
 			<div style="width:40%; padding: 20px;">
 				<p id="username-label" style="font-family: 'Pacifico';">${username}</p>
 			</div>
@@ -177,18 +177,12 @@
 	<script>	
 	
 		// all'avvio e durante lo scorrimento
-		$(document).ready(getRicette());
 		
 		$(window).scroll(function() {   
 			   if($(window).scrollTop() + $(window).height() == $(document).height()) {
 				   getRicette();
 			   }
-		});
-		
-		function goToHome () { 
-		    window.location.href = './Login';
-		};
-		
+		});		
 
 	</script>
 </body>

@@ -7,6 +7,7 @@ public interface AccountDao {
 	public void save(Account account);  							// Create
 	public Account findByPrimaryKey(Long id);   					// Retrieve
 	public Account findByEmail(String email);						// RetrieveByEmail
+	public Long retrieveIdByEmail(String email);
 	public List<Account> findAll();           						// RetrieveAll
 	public void update(Account account); 							// Update
 	public void delete(Account account); 							// Delete	

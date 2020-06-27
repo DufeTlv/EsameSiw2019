@@ -148,10 +148,7 @@ public class RicettaDaoJDBC implements RicettaDao{
                 ricetta.setTitolo(result.getString("titolo"));
                 ricetta.setDifficolta(result.getInt("difficolta"));  
                 ricetta.setTempo(result.getString("tempo"));
-                //ricetta.setProcedimento(result.getString("procedimento"));
-                //ricetta.setAccountId(result.getLong("account_id"));
                 ricetta.setImageUrl(result.getString("image_url"));
-                //ricetta.setDeleteHash(result.getString("deletehash"));
                 
                 ricettaList.add(ricetta);
               
@@ -184,7 +181,7 @@ public class RicettaDaoJDBC implements RicettaDao{
         			query += " and";
         	}
         	
-        	System.out.println(query);
+        	//System.out.println(query);
         	statement = connection.prepareStatement(query);            
             
             ResultSet result = statement.executeQuery();
@@ -393,5 +390,49 @@ public class RicettaDaoJDBC implements RicettaDao{
         }   
         return ricetta;
     }
+
+	@Override
+	public List<Ricetta> retrieveGraduallyByAccountId(Long aId, Long rId) {
+		Connection connection = this.dataSource.getConnection();
+        List<Ricetta> ricettaList = new ArrayList<>();
+        try {
+        	Ricetta ricetta;
+            PreparedStatement statement;
+            String query = "";
+            if(rId < 0) {
+            	query = "select id, titolo, difficolta, tempo, image_url from ricetta where account_id = ? order by id desc limit 6";
+            	statement = connection.prepareStatement(query);
+            	statement.setLong(1, aId);
+            }else {
+            	query = "select id, titolo, difficolta, tempo, image_url from ricetta where account_id = ? and id < ? order by id desc limit 6";
+            	statement = connection.prepareStatement(query);
+                statement.setLong(1, aId);
+                statement.setLong(2, rId);
+            }
+            
+            ResultSet result = statement.executeQuery();
+            
+            while (result.next()) {
+                ricetta = new Ricetta();
+                ricetta.setId(result.getLong("id"));                
+                ricetta.setTitolo(result.getString("titolo"));
+                ricetta.setDifficolta(result.getInt("difficolta"));  
+                ricetta.setTempo(result.getString("tempo"));
+                ricetta.setImageUrl(result.getString("image_url"));
+                
+                ricettaList.add(ricetta);
+              
+            }
+        } catch (SQLException e) {
+            throw new PersistenceException(e.getMessage());
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                throw new PersistenceException(e.getMessage());
+            }
+        }   
+        return ricettaList;
+	}
 
 }

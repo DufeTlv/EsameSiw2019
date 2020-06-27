@@ -20,9 +20,9 @@ public class Logout extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		HttpSession session = req.getSession(false);
+		//HttpSession session = req.getSession(false);
 		
-		if (session != null) {
+		if (req.getSession() != null) {
             //session.removeAttribute("username");
             //session.removeAttribute("id");
 			req.getSession().setAttribute("username", null);

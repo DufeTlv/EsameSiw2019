@@ -51,20 +51,16 @@ public class PreferitoDaoJDBC implements PreferitoDao{
 	}
 
 	@Override
-	public Preferito findByPrimaryKey(Long codice) {
-		
-		return null;
-	}
-	
-	public Preferito findByIdRicetta(Long codice) {
+	public Preferito findByPrimaryKeys(Long aId, Long rId) {
 		Connection connection = this.dataSource.getConnection();
 		Preferito preferito = null;
 		
 		try {
-			 String retrive = "select * from preferito where ricetta_id = ?";
+			 String retrive = "select * from preferito where account_id = ? and ricetta_id = ?";
 			 
 			 PreparedStatement statement = connection.prepareStatement(retrive);
-			 statement.setLong(1, codice);
+			 statement.setLong(1, aId);
+			 statement.setLong(2, rId);
 			 
 			 ResultSet result = statement.executeQuery();
 			 
@@ -84,7 +80,7 @@ public class PreferitoDaoJDBC implements PreferitoDao{
 	         }
 	     }
 		
-		return preferito;
+		return preferito;		
 	}
 	
 	@Override

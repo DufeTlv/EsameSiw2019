@@ -28,13 +28,13 @@ public class DammiCommento extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		BufferedReader reader = new BufferedReader(new InputStreamReader(request.getInputStream()));
-		String jsonReceived = reader.readLine();
+		//BufferedReader reader = new BufferedReader(new InputStreamReader(request.getInputStream()));
+		//String jsonReceived = reader.readLine();
 		//System.out.println(jsonReceived);
 		
 		try {
-			JSONObject json = new JSONObject(jsonReceived);
-			List<Commento> commenti = DatabaseManager.getInstance().getDaoFactory().getCommentoDAO().findAll(json.getLong("ricetta_id"));
+			//JSONObject json = new JSONObject(jsonReceived);
+			List<Commento> commenti = DatabaseManager.getInstance().getDaoFactory().getCommentoDAO().findAll((Long) request.getSession().getAttribute("ricetta_id"));
 			//Creating a JSONObject object
 		    JSONObject jsonObject = new JSONObject();
 		    //Creating a json array
@@ -52,6 +52,7 @@ public class DammiCommento extends HttpServlet {
 			
 			jsonObject.put("commento", array);
 			
+			//System.out.println(jsonObject.toString());
 			response.getWriter().println(jsonObject.toString());
 			
 		

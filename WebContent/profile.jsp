@@ -55,8 +55,8 @@
 				<p id="username-label" style="font-family: 'Pacifico';">${username}</p>
 			</div>
 			<div style="display:inline-block; width:100%; height:40px; margin-bottom: -5px;">
-				<button id="btnmie" onclick="mostraMie();" class="my-slidingbutton" style="float:left; width:50%; height:100%; margin: 0; font-family:'Pacifico'; background-color:#ffe1d8;">Le mie Ricette</button>
-				<button id="btnpref" onclick="mostraPreferiti();" class="my-slidingbutton" style="float:right; width:50%; height:100%; margin: 0; font-family:'Pacifico'">Preferiti</button>
+				<button id="btnmie" class="my-slidingbutton" style="float:left; width:50%; height:100%; margin: 0; font-family:'Pacifico'; background-color:#ffe1d8;">Le mie Ricette</button>
+				<button id="btnpref" class="my-slidingbutton" style="float:right; width:50%; height:100%; margin: 0; font-family:'Pacifico'">Preferiti</button>
 			</div>
 			<div style="padding-bottom:6px; position: relative; background-color: #ffe1d8;">
 				<div id="slider" style="border: 3px solid #ff9d7d; border-radius: 5px; width:50%; position:absolute;"></div>
@@ -74,9 +74,10 @@
 	</div>
 
 	<script type="text/javascript" src="js/sideMenu.js" ></script>
+	<script type="text/javascript" src="js/gestioneFeed.js" ></script>
 	<script type="text/javascript">
 	
-		// old blue color: "rgba( 71, 190, 214, 0.3)";
+		/*// old blue color: "rgba( 71, 190, 214, 0.3)";
 		// water green : rgba( 125, 255, 147, 1);  HEX: #7dff93; 
 		// melon green : rgba( 160, 255, 125, 1);  HEX: #a0ff7d;
 		// violet 	   : rgba( 125, 138, 255, 1);  HEX: #7d8aff;
@@ -169,7 +170,7 @@
 					</div>
 					<input type="hidden" value="id_ricetta"/>
 				</form>
-			*/
+			*//*
 			
 			for(var i=0; i<n; i++){
 				var form = document.createElement("form");
@@ -301,13 +302,13 @@
 				div.appendChild(form);
 		
 			}
-		}
+		}*/
 		
-		function getRicette(){	
+		/*function getRicette(){	
 			
 			var jsonObj
 			
-		    if(seldiv == "mie"){
+		    if(seldiv != "preferite"){
 		    	var id;
 				if(document.getElementsByClassName(seldiv).length < 1){
 					id = -1;
@@ -316,12 +317,12 @@
 				}
 				jsonObj = '{"id":' + id + '}';
 			}else{
-				jsonObj = '{"account_id":"' + document.getElementById("username-label").innerHTML + '", "offset":' + document.getElementsByClassName(seldiv).length + '}';
+				jsonObj = '{"offset":' + document.getElementsByClassName(seldiv).length + '}';
 			}
 				
 			$.ajax({
 				type: "POST",
-				url : (seldiv == "mie")? 'DammiRicetta':'DammiRicettePreferite',
+				url : (seldiv == "mie")? 'DammiRicette':'DammiRicettePreferite',
 				datatype: "json",
 				data: jsonObj,
 				success : function(responseText) {
@@ -358,10 +359,10 @@
 					}
 				}
 			});
-		}
+		}*/
 		
 		// all'avvio e durante lo scorrimento
-		$(document).ready(getRicette());
+		//$(document).ready(getRicette());
 		
 		$(window).scroll(function() {   
 			   if($(window).scrollTop() + $(window).height() == $(document).height()) {

@@ -96,6 +96,71 @@ public class AccountDaoJDBC implements AccountDao {
 		}	
 		return account;
 	}
+	
+	@Override
+	public Account findByEmail(String email) {
+		Connection connection = this.dataSource.getConnection();
+		Account account = null;
+		try {
+			PreparedStatement statement;
+			String query = "select * from account where indirizzoemail = ?";
+			statement = connection.prepareStatement(query);
+			statement.setString(1, email);
+			ResultSet result = statement.executeQuery();
+			
+			if (result.next()) {
+				account = new Account();
+				account.setId(result.getLong("id"));				
+				account.setNome(result.getString("nome"));
+				account.setCognome(result.getString("cognome"));
+				account.setSesso(result.getString("sesso"));
+				account.setIndirizzoEmail(result.getString("indirizzoemail"));
+				account.setPassword(result.getString("password"));
+				long dateN = result.getDate("datanascita").getTime();
+				//long dateI = result.getDate("dataiscrizione").getTime();
+				account.setDataNascita(new java.util.Date(dateN));
+				//account.setDataIscrizione(new java.util.Date(dateI));
+			}
+			
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		}	 finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
+		return account;
+	}
+	
+	@Override
+	public Long retrieveIdByEmail(String email) {
+		Connection connection = this.dataSource.getConnection();
+		
+		try {
+			PreparedStatement statement;
+			String query = "select id from account where indirizzoemail = ?";
+			statement = connection.prepareStatement(query);
+			statement.setString(1, email);
+			ResultSet result = statement.executeQuery();
+			
+			if(result.next()) {
+				return result.getLong("id");
+			}
+			
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		}	 finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
+		
+		return null;
+	}
 
 	@Override
 	public List<Account> findAll() {
@@ -209,48 +274,11 @@ public class AccountDaoJDBC implements AccountDao {
 	}
 
 	@Override
-	public Account findByEmail(String email) {
-		Connection connection = this.dataSource.getConnection();
-		Account account = null;
-		try {
-			PreparedStatement statement;
-			String query = "select * from account where indirizzoemail = ?";
-			statement = connection.prepareStatement(query);
-			statement.setString(1, email);
-			ResultSet result = statement.executeQuery();
-			
-			if (result.next()) {
-				account = new Account();
-				account.setId(result.getLong("id"));				
-				account.setNome(result.getString("nome"));
-				account.setCognome(result.getString("cognome"));
-				account.setSesso(result.getString("sesso"));
-				account.setIndirizzoEmail(result.getString("indirizzoemail"));
-				account.setPassword(result.getString("password"));
-				long dateN = result.getDate("datanascita").getTime();
-				//long dateI = result.getDate("dataiscrizione").getTime();
-				account.setDataNascita(new java.util.Date(dateN));
-				//account.setDataIscrizione(new java.util.Date(dateI));
-			}
-			
-		} catch (SQLException e) {
-			throw new PersistenceException(e.getMessage());
-		}	 finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				throw new PersistenceException(e.getMessage());
-			}
-		}
-		return account;
-	}
-
-	@Override
 	public boolean emailPresent(String email) {
 		Connection connection = this.dataSource.getConnection();
 		try {
 			PreparedStatement statement;
-			String query = "select * from account where email = ?";
+			String query = "select indirizzoemail from account where indirizzoemail = ?";
 			statement = connection.prepareStatement(query);
 			statement.setString(1, email);
 			ResultSet result = statement.executeQuery();

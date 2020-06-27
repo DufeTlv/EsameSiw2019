@@ -3,6 +3,7 @@ package controller;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -19,32 +20,36 @@ import model.Ricetta;
 import persistence.DatabaseManager;
 
 /**
- * Servlet implementation class DammiRicetta
+ * Servlet implementation class DammiRicettaRicerca
  */
-@WebServlet("/DammiRicetta")
-public class DammiRicetta extends HttpServlet {
+@WebServlet("/DammiRicetteRicerca")
+public class DammiRicetteRicerca extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public DammiRicetta() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+    
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		BufferedReader reader = new BufferedReader(new InputStreamReader(request.getInputStream()));
 		String jsonReceived = reader.readLine();
-		//System.out.println(jsonReceived);
-		//System.out.println(ricette.size());
+		System.out.println(jsonReceived);
+		
 		try {
 			JSONObject json = new JSONObject(jsonReceived);
-			List<Ricetta> ricette = DatabaseManager.getInstance().getDaoFactory().getRicettaDAO().retrieveGradually(json.getLong("id"));
+			String s = json.getString("search");
+			
+			List<String> subs = new ArrayList<>();
+			String subStr = "";
+			for(int j = 0; j < s.length(); j++) {
+				if(s.charAt(j) != ' ') {
+					subStr += s.charAt(j);
+				}
+				if((s.charAt(j) == ' ' || j == s.length()-1) && subStr.length() != 0) {
+					subs.add(subStr);
+					subStr = "";
+				}
+			}			
+			
+			Long account_id = DatabaseManager.getInstance().getDaoFactory().getAccountDAO().retrieveIdByEmail((String) request.getSession().getAttribute("username"));
+			
+			List<Ricetta> ricette = DatabaseManager.getInstance().getDaoFactory().getRicettaDAO().retrieveBySearch(subs);
 			//Creating a JSONObject object
 		    JSONObject jsonObject = new JSONObject();
 		    //Creating a json array
@@ -56,12 +61,12 @@ public class DammiRicetta extends HttpServlet {
 			   
 			   record.put("id", ricette.get(i).getId());
 			   record.put("titolo", ricette.get(i).getTitolo());
-			   record.put("difficolta", (ricette.get(i).getDifficolta() == 0)? "Facile" :(ricette.get(i).getDifficolta() == 1)? "Media": "Difficile");
+			   record.put("difficolta", ( (ricette.get(i).getDifficolta() == 0)? "Facile" :(ricette.get(i).getDifficolta() == 1)? "Media": "Difficile") );
 			   record.put("tempo", ricette.get(i).getTempo());
 			   //record.put("procedimento", ricette.get(i).getProcedimento());
 			   record.put("imageurl", ricette.get(i).getImageUrl());
 			   
-			   if(DatabaseManager.getInstance().getDaoFactory().getPreferitoDAO().findByIdRicetta(ricette.get(i).getId()) != null)
+			   if(DatabaseManager.getInstance().getDaoFactory().getPreferitoDAO().findByPrimaryKeys(account_id, ricette.get(i).getId()) != null)
 				   record.put("preferito", "1");
 			   else
 				   record.put("preferito", "0");
@@ -71,14 +76,14 @@ public class DammiRicetta extends HttpServlet {
 			
 			jsonObject.put("ricetta", array);
 			
-			response.getWriter().println(jsonObject.toString());
+			//System.out.println(jsonObject.toString());
 			
-		
+			response.getWriter().println(jsonObject.toString());			
+			
 		} catch (JSONException e) {
 			  // TODO Auto-generated catch block
 			  e.printStackTrace();
 		}
-		//doGet(request, response);
 	}
 
 }

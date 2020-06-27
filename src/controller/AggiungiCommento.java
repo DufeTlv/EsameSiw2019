@@ -38,13 +38,13 @@ public class AggiungiCommento extends HttpServlet {
 			
 			Commento commento = new Commento();
 			
-			commento.setAccount_id(DatabaseManager.getInstance().getDaoFactory().getAccountDAO().findByEmail(json.getString("account_id")).getId());
-			commento.setRicetta_id(json.getLong("ricetta_id"));
+			commento.setAccount_id(DatabaseManager.getInstance().getDaoFactory().getAccountDAO().findByEmail((String) request.getSession().getAttribute("username")).getId());
+			commento.setRicetta_id((Long) request.getSession().getAttribute("ricetta_id"));
 			commento.setDescrizione(json.getString("descrizione"));
 			commento.setGifUrl(json.getString("gif_url"));
 			commento.setGifUrlStill(json.getString("gif_url_still"));
 			
-			DatabaseManager.getInstance().getDaoFactory().getCommentoDAO().save(commento);
+			//DatabaseManager.getInstance().getDaoFactory().getCommentoDAO().save(commento);
 		
 		} catch (JSONException e) {
 			  // TODO Auto-generated catch block

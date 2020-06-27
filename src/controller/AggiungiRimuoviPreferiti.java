@@ -30,19 +30,25 @@ public class AggiungiRimuoviPreferiti extends HttpServlet {
 
 		try {
 			JSONObject json = new JSONObject(jsonReceived);
-			String action = json.getString("action");
-			System.out.println(action + "add " + (action.equals("add")));
+			Long account_id = DatabaseManager.getInstance().getDaoFactory().getAccountDAO().retrieveIdByEmail((String) request.getSession().getAttribute("username"));
+			Long ricetta_id = Long.parseLong(json.getString("ricetta_id"));
+			
+			boolean p = (DatabaseManager.getInstance().getDaoFactory().getPreferitoDAO().findByPrimaryKeys(account_id, ricetta_id) != null);
 			
 			Preferito preferito = new Preferito();
-			preferito.setAccount_id(DatabaseManager.getInstance().getDaoFactory().getAccountDAO().findByEmail(json.getString("account_id")).getId());
-			preferito.setRicetta_id(Long.parseLong(json.getString("ricetta_id")));
+			preferito.setAccount_id(account_id);
+			preferito.setRicetta_id(ricetta_id);
 			
-			if(json.getString("action").equals("add")) {
-				DatabaseManager.getInstance().getDaoFactory().getPreferitoDAO().save(preferito);
-			}else if(json.getString("action").equals("remove")){
-				System.out.println("else");
+			if(p) {
 				DatabaseManager.getInstance().getDaoFactory().getPreferitoDAO().delete(preferito);
+			}else{
+				DatabaseManager.getInstance().getDaoFactory().getPreferitoDAO().save(preferito);
 			}
+			
+			JSONObject jsonObject = new JSONObject();
+			jsonObject.put("p", (p)? "true": "false");
+			response.getWriter().println(jsonObject.toString());
+			
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

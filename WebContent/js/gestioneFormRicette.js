@@ -33,6 +33,10 @@ function setClickListeners(){
 	
 }
 
+function createFrom(){
+	
+}
+
 // mostra il form per la creazione e il caricamento delle ricette
 function showForm(){
 	var y = document.getElementsByClassName("myInput");
