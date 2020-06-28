@@ -21,8 +21,6 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
   	
-  	<script type="text/javascript" src="js/gestioneFeed.js" ></script>
-  	
 </head>
 <body class="cyan-shell-gradient-background it">
 
@@ -63,6 +61,7 @@
 	</div>
 	
 	<script type="text/javascript" src="js/sideMenu.js" ></script>
+	<script type="text/javascript" src="js/gestioneFeed.js" ></script>
 	<script>
 		$(document).ready(document.getElementById("ricerca").value = "");
 		

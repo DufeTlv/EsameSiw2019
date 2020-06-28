@@ -27,12 +27,13 @@ public class RicettaDaoJDBC implements RicettaDao{
 	}
 
 	@Override
-    public void save(Ricetta ricetta) {
+    public Long save(Ricetta ricetta) {
         // TODO Auto-generated method stub
         
            Connection connection = this.dataSource.getConnection();
+           Long id = (long) -1;
             try {
-                Long id = IdBroker.getIdRicetta(connection);
+                id = IdBroker.getIdRicetta(connection);
                 ricetta.setId(id);
                  
                 String insert = "insert into ricetta(id, titolo, difficolta, tempo, procedimento, account_id, image_url, deletehash) values (?,?,?,?,?,?,?,?)";
@@ -58,6 +59,8 @@ public class RicettaDaoJDBC implements RicettaDao{
                     throw new PersistenceException(e.getMessage());
                 }
             }
+            
+            return id;
         
     }
 
@@ -290,9 +293,9 @@ public class RicettaDaoJDBC implements RicettaDao{
             String update;
             
             if(ricetta.getImageUrl().isEmpty())
-            	update = "update ricetta SET titolo = ?, difficolta = ?, tempo = ?, procedimento = ?, account_id = ? WHERE id = ?";
+            	update = "update ricetta SET titolo = ?, difficolta = ?, tempo = ?, procedimento = ? WHERE id = ?";
             else
-            	update = "update ricetta SET titolo = ?, difficolta = ?, tempo = ?, procedimento = ?, account_id = ?, image_url = ?, deletehash = ? WHERE id = ?";
+            	update = "update ricetta SET titolo = ?, difficolta = ?, tempo = ?, procedimento = ?, image_url = ?, deletehash = ? WHERE id = ?";
             	
             PreparedStatement statement = connection.prepareStatement(update);
             
@@ -300,20 +303,18 @@ public class RicettaDaoJDBC implements RicettaDao{
             statement.setInt(2, ricetta.getDifficolta());
             statement.setString(3, ricetta.getTempo());
             statement.setString(4, ricetta.getProcedimento());
-            statement.setLong(5, ricetta.getAccountId());
             
-            int index = 6;
+            int index = 5;
             if(!ricetta.getImageUrl().isEmpty()) {
-	            statement.setString(6, ricetta.getImageUrl());
-	            statement.setString(7, ricetta.getDeleteHash()); 
-	            index = 8;
+	            statement.setString(5, ricetta.getImageUrl());
+	            statement.setString(6, ricetta.getDeleteHash()); 
+	            index = 7;
             }
 
             statement.setLong(index, ricetta.getId());
             
             statement.executeUpdate();
             
-            //this.updatePorzioni(ricetta, connection);
         } catch (SQLException e) {
             throw new PersistenceException(e.getMessage());
         } finally {
@@ -433,6 +434,32 @@ public class RicettaDaoJDBC implements RicettaDao{
             }
         }   
         return ricettaList;
+	}
+
+	@Override
+	public Long getAccountId(Long id) {
+		Connection connection = this.dataSource.getConnection();
+        Long aId = null;
+        try {
+            PreparedStatement statement;
+            String query = "select account_id from ricetta where id = ?";
+            statement = connection.prepareStatement(query);
+            statement.setLong(1, id);
+            ResultSet result = statement.executeQuery();
+            
+            if (result.next()) {
+                aId =result.getLong("account_id");
+            }
+        } catch (SQLException e) {
+            throw new PersistenceException(e.getMessage());
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                throw new PersistenceException(e.getMessage());
+            }
+        }   
+        return aId;
 	}
 
 }

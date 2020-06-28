@@ -33,10 +33,6 @@ function setClickListeners(){
 	
 }
 
-function createFrom(){
-	
-}
-
 // mostra il form per la creazione e il caricamento delle ricette
 function showForm(){
 	var y = document.getElementsByClassName("myInput");
@@ -157,11 +153,11 @@ function uploadRicetta(comando){
 		
 		$.ajax({
 			type: "POST",
-			url: "AggiungiRicetta",
+			url: "AggiungiModificaRicetta",
 			datatype: "json",
 			data: jsonObj,
-			success: function (){
-				alert("andiamo a berlino beppe");
+			success: function (responseText){
+				alert(responseText);
 			}
 		});
 	
@@ -170,29 +166,10 @@ function uploadRicetta(comando){
 	}
 }
 
-function deleteIMG(){
-	var settings = {
-		async: false,
-		crossDomain: true,
-		processData: false,
-		contentType: false,
-		type: 'POST',
-		url: "https://imgur.com/delete/" + deletehash,
-		headers: {
-			Authorization: 'Client-ID ' + 'a81cd68a56ce0b1',
-			Accept: 'application/json'
-		},
-		mimeType: 'multipart/form-data'
-	};
-	
-	$.ajax(settings).success(function (){
-			alert("cancellata");
-	});
-	//https://i.imgur.com/0sYQUfl.jpg 9sGJ3txPoTPAxbY
-}
-
 //per il caricamento delle immagini
-$("document").ready(function() {
+$("document").ready(imgur());
+
+function imgur() {
 
 	$('input[type=file]').on("change", function() {
 
@@ -204,20 +181,7 @@ $("document").ready(function() {
 			if ($files[0].size > $(this).data("max-size") * 1024) {
 				console.log("Please select a smaller file");
 				return false;
-			}
-			
-			// cancellare se presente la vecchia immagine
-			/*if(deleteHash != ''){
-				$.ajax({
-					type: "POST",
-					url: "https://imgur.com/delete/" + deletehash,
-					success: function (){
-						alert("cancellata");
-					}
-				});
-			}*/
-			//("https://imgur.com/delete/" + deletehash);
-			
+			}			
 
 			// Begin file upload
 			console.log("Uploading file to Imgur..");
@@ -253,9 +217,8 @@ $("document").ready(function() {
 				alert(jsonObj.data.link + ' ' + jsonObj.data.deletehash); //JXBhlV6uJHS20ST, LP8nDOJj8Mp0gbV
 				image_url = jsonObj.data.link;
 				deletehash = jsonObj.data.deletehash;
-				//$("myImg").src = image_url;
 			});
 
 		}
-  });
-});
+	});
+}

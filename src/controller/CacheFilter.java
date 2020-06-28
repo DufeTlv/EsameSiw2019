@@ -44,13 +44,13 @@ public class CacheFilter implements Filter {
 	        chain.doFilter(req, resp);  
         }*/
         
-        /*response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
+        response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
     	response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
     	response.setDateHeader("Expires", 0);
     	//setDateHeader("Last-Modified", (new Date()).getTime() );
     	
     	// pass the request along the filter chain
-        chain.doFilter(req, resp); */
+        chain.doFilter(req, resp); 
 	}
 	
 	public void init(FilterConfig fConfig) throws ServletException {

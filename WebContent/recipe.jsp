@@ -34,7 +34,14 @@ prefix="c" %>
 </head>
 <body class="cyan-shell-gradient-background it">
 
-	<div style="margin: 40px 0 20px 0;  border: 1px solid transparent;"> 
+	<!-- side nav menu -->
+	<div style="position:fixed; top:4%; left:14%; border: 1px solid transparent; color: #ff9d7d;">
+		<div id="home" onclick="window.history.back();" class="hexagon hex-left" style="left: 0%;">
+			<div style="position:absolute; z-index:2; font-family:'Pacifico'; left:38%; top:15%;"><i class="fas fa-arrow-left"></i></div>
+		</div>
+	</div>
+
+	<div style="margin: 40px 0 20px 0; border: 1px solid transparent;"> 
 		<div class="container my-container" style="width:40%; padding: 0 0 0 0">
 			<div style="padding: 30px 50px 10px 50px">
 				<p id="titoloR" style="font-family: 'Pacifico'; text-align: center" > ~${titolo}~ </p>
@@ -91,8 +98,12 @@ prefix="c" %>
 		</div>
 	</div>
 	
+	<div id="capp">
+	</div>
+	
+	
 	<!--brightness-->
-	<div class="myInput" style="position: fixed; top:0; left:0; background-color: rgba(0,0,0, 0.5); width: 100%; height: 100%; display: none;"> </div>
+	<div class="brightness-filter myInput"> </div>
 
 	<!--  -->
 	<div class="my-container-div middle myInput" style="position: fixed; width: 40%; z-index: 1; display: none;"> 
@@ -110,7 +121,7 @@ prefix="c" %>
 			<div style=" width:100%; height: 100%; display:grid; grid-template-columns: 30% 70%; clear:both; margin-bottom:10px;">
 				<!--#3.1-->
 				<div style="float: left; width: 100%; height: 298px; ">
-					
+					<!--#3.1.1-->
 					<div style=" width:100%; display:grid; grid-template-columns: 46% 35%; clear:both;">
 						<div>
 							<p for="tempopreparazione" style="font-family: 'Pacifico'; font-size: 20px; color: #ff9d7d; margin: 0 0 0 0;">Tempo:</p>
@@ -128,7 +139,7 @@ prefix="c" %>
 					</div>
 					
 					<p for="ingredienti" style="font-family: 'Pacifico'; font-size: 20px; color: #ff9d7d; margin: 0 0 0 0;">Ingredienti:</p>
-					<!--#3.1.1-->
+					<!--#3.1.2-->
 					<div class="div_ingr" style="overflow-y: scroll; overflow-x: hidden; scrollbar-width: none; margin-top: 5px; height: 65%; border: 1px dotted #333333; border-radius: 5px;"> 
 						<div class="selectDiv 0" style="width:100%; display:grid; grid-template-columns: 35% 30% 35%; font-size: 14px; color: #333333">
 							<select class="selectIngr">
@@ -203,8 +214,8 @@ prefix="c" %>
 				
 				<div  style="width:100%; margin:10px 0; display:grid; grid-template-columns: 65% 35%; clear:both;">
 					
-					<div id="divGif" class="my-expand-div" style=" width:35px; height:34px; margin:0; display:grid; grid-template-columns: 8% 84% 10%; clear:both; border: 1px solid #ff9d7d; border-radius: 20px;">
-						<button class="my-slidingbutton" onclick="openDiv();" style=" width:32px; border-radius: 20px; margin-left:1px;"><span class="gif-icon"></span></button>
+					<div id="gifSearchDiv" class="my-expand-div" style=" width:35px; height:34px; margin:0; display:grid; grid-template-columns: 8% 84% 10%; clear:both; border: 1px solid #ff9d7d; border-radius: 20px;">
+						<button class="my-slidingbutton" onclick="searchDivController();" style=" width:32px; border-radius: 20px; margin-left:1px;"><span class="gif-icon"></span></button>
 						<input id="ricercaGIF" type="text" maxlength="auto" placeholder="cerca GIF" style="margin:0; border-radius: 20px; color: #333333; border: none; display:none;" required >
 						<button onclick="giphy();" class="my-slidingbutton" style="float:right; margin:0; margin-left:5px; width:32px; font-size: 12px; font-family:'Pacifico'; border-radius: 20px; display:none;"><span class="fas fa-search"></span></button>
 					</div>
@@ -229,7 +240,22 @@ prefix="c" %>
 	<script type="text/javascript" src="js/ricetta.js" ></script>
 	<script type="text/javascript" src="js/gestioneFormRicette.js" ></script>
 	
+	<% if (((boolean)request.getSession().getAttribute("edit")) == true) { %>
+	    <script type="text/javascript">
+	    	/*var x = $(document.createElement("div"));
+	    	x.attr({ "class" : "container my-container", "style" : "width:100%; padding: 40px; padding-top: 20px; border-radius: 20px;"});
+	    	$("#capp").append(x);*/
+	    	
+	    	//createFrom();
+	    </script>
+	<% } %>
+	
 	<script>
+	
+		$(document).ready(
+				popolaSelectIngredienti(),
+				popolaForm()
+		);
 		
 		function popolaForm(){
 			

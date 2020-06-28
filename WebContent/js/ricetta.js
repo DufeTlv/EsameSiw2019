@@ -1,6 +1,6 @@
 $(document).ready(
 		getCommenti(),
-		getValNutr(),
+		//getValNutr(),
 		//popolaSelectIngredienti(),
 		//popolaForm(),
 		editButton()//,
@@ -107,30 +107,6 @@ function aggiungiCommento(){
 	});
 }
 
-/*function editButton(){
-
-	var rChild = document.createElement("div");
-	rChild.className = "my-expand-button";
-	rChild.style.fontFamily = "Pacifico";
-	rChild.style.position = "absolute";
-	rChild.style.top = "12%";
-	rChild.style.right = "32.5%";
-	rChild.onmouseleave = function(){this.childNodes[1].style.display = 'none'; this.childNodes[1].style.animation = '';};
-	rChild.innerHTML = "<span class='fas fa-pencil-alt' style='position:absolute; top:7px; left:8px; font-size:22px;'></span>"
-					   + "<p style='position:absolute; right:20px; top: 6px; font-size:16px; font-family: Pacifico; display: none;'>modifica ricetta</p>";
-	
-	rChild.addEventListener('webkitAnimationEnd', function(){
-		this.childNodes[1].style.display = 'inline-block'
-		this.childNodes[1].style.animation = 'opacitybutton 0.5s';
-	});
-	
-	rChild.addEventListener('click', function(){
-		showForm();
-	});
-	
-	document.getElementById("titoloR").after(rChild);
-}*/
-
 function editButton(){
 	
 	var rChild = document.createElement("div");
@@ -154,6 +130,7 @@ function editButton(){
 	});
 	
 	document.getElementById("titoloR").after(rChild);
+	
 }
 
 function getValNutr(){
@@ -200,9 +177,9 @@ function getValNutr(){
 	
 }
 
-function openDiv(){
+function searchDivController(){
 	
-	var node = document.getElementById("divGif");
+	var node = document.getElementById("gifSearchDiv");
 
 	if(node.style.animationName != "expand-div"){
 		node.style.width = "460px";
@@ -233,9 +210,10 @@ function openDiv(){
 	
 }
 
-function gifDiv(){
+function createGifDiv(){
 	
 	if(document.getElementById("results") == null){
+		
 		var divChild = document.createElement("div");
 		divChild.id = "results";
 		divChild.className = "container my-container";
@@ -245,12 +223,8 @@ function gifDiv(){
 		divChild.style.maxHeight = "300px";
 		divChild.style.overflowY = "scroll";
 		
-		var inputChild = document.createElement("input");
-		inputChild
-		
 		document.getElementById("commenti").childNodes[1].appendChild(divChild);
 		
-		giphy();
 	}
 	
 }
@@ -263,8 +237,7 @@ function clearGifDiv(){
 }
 
 function giphy(){
-	gifDiv();
-	clearGifDiv();
+	createGifDiv();
 	
 	var queryURL = "https://api.giphy.com/v1/gifs/search?";
 	var query = $('#ricercaGIF').val();
@@ -286,21 +259,19 @@ function giphy(){
 	
 	        // Image builder object
 	        $img.attr({
-	          // "width": "200px",
 	          "src": gif.fixed_height_still.url,
 	          "class": "gif",
 	          "data-animate": gif.fixed_height.url,
 	          "data-still": gif.fixed_height_still.url,
 	          "data-state": "still"			          
 	        });
-	        // $div.attr("id", "gif-" + i);
 	        $div.addClass("gif-box");
 	        $div.append($img);
 	        $("#results").append($div);
 	      }
 	
 	      $(".gif").on("click", function() {
-	    	  openDiv();
+	    	  searchDivController();
 	    	  
 	    	  if(document.getElementById("editorGIF") == null){
 	    		  var x = $(document.createElement("img"));

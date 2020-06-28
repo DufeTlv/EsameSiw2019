@@ -1,9 +1,8 @@
 var seldiv = 'feed';
 
 $(document).ready(
-		setProfileButtons(),
-		getRicette()
-		);
+		setProfileButtons()
+	);
 
 function setProfileButtons(){
 	
@@ -40,6 +39,11 @@ function setProfileButtons(){
 			mostraPreferiti();
 		});
 	}
+	
+	if(document.getElementById("ricerca") == null){
+		getRicette();
+	}
+		
 }
 
 function mostraMie(){
@@ -88,7 +92,6 @@ function mostraPreferiti(){
 
 function getRicette(){			    
 	    
-	
 	var jsonObj;
 	
 	if(seldiv != "preferite"){
@@ -105,7 +108,7 @@ function getRicette(){
 	
 	$.ajax({
 		type: "POST",
-		url : (seldiv == "feed")? 'DammiRicette': (seldiv == "mie")? 'DammiRicette' : 'DammiRicettePreferite',
+		url : (seldiv != "preferite")? 'DammiRicette':'DammiRicettePreferite',
 		datatype: "json",
 		data: jsonObj,
 		success : function(responseText) {

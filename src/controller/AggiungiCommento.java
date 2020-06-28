@@ -29,26 +29,28 @@ public class AggiungiCommento extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		BufferedReader reader = new BufferedReader(new InputStreamReader(request.getInputStream()));
-		String jsonReceived = reader.readLine();
-		System.out.println(jsonReceived);
-		
-		try {
-			JSONObject json = new JSONObject(jsonReceived);
+		if(request.getSession().getAttribute("username") != null) {
+			BufferedReader reader = new BufferedReader(new InputStreamReader(request.getInputStream()));
+			String jsonReceived = reader.readLine();
+			System.out.println(jsonReceived);
 			
-			Commento commento = new Commento();
+			try {
+				JSONObject json = new JSONObject(jsonReceived);
+				
+				Commento commento = new Commento();
+				
+				commento.setAccount_id(DatabaseManager.getInstance().getDaoFactory().getAccountDAO().findByEmail((String) request.getSession().getAttribute("username")).getId());
+				commento.setRicetta_id((Long) request.getSession().getAttribute("ricetta_id"));
+				commento.setDescrizione(json.getString("descrizione"));
+				commento.setGifUrl(json.getString("gif_url"));
+				commento.setGifUrlStill(json.getString("gif_url_still"));
+				
+				DatabaseManager.getInstance().getDaoFactory().getCommentoDAO().save(commento);
 			
-			commento.setAccount_id(DatabaseManager.getInstance().getDaoFactory().getAccountDAO().findByEmail((String) request.getSession().getAttribute("username")).getId());
-			commento.setRicetta_id((Long) request.getSession().getAttribute("ricetta_id"));
-			commento.setDescrizione(json.getString("descrizione"));
-			commento.setGifUrl(json.getString("gif_url"));
-			commento.setGifUrlStill(json.getString("gif_url_still"));
-			
-			//DatabaseManager.getInstance().getDaoFactory().getCommentoDAO().save(commento);
-		
-		} catch (JSONException e) {
-			  // TODO Auto-generated catch block
-			  e.printStackTrace();
+			} catch (JSONException e) {
+				  // TODO Auto-generated catch block
+				  e.printStackTrace();
+			}
 		}
 	}
 
