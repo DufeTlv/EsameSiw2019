@@ -24,11 +24,6 @@ function setClickListeners(){
 		document.getElementById('datiAnagrafici').style.display = 'block';
 	});
 	
-	document.getElementById("emailBtn").addEventListener('click', function(){
-		hideAllDivs();
-		document.getElementById('indirizzoEmail').style.display = 'block';
-	});
-	
 	document.getElementById("passwordBtn").addEventListener('click', function(){
 		hideAllDivs();
 		document.getElementById('password').style.display = 'block';

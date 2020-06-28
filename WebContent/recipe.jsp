@@ -103,10 +103,10 @@ prefix="c" %>
 	
 	
 	<!--brightness-->
-	<div class="brightness-filter myInput"> </div>
+	<div id="bright" class="brightness-filter myInput"> </div>
 
 	<!--  -->
-	<div class="my-container-div middle myInput" style="position: fixed; width: 40%; z-index: 1; display: none;"> 
+	<div id="ness" class="my-container-div middle myInput" style="position: fixed; width: 40%; z-index: 1; display: none;"> 
 		<div class="container my-container" style="width:100%; padding: 40px; padding-top: 20px; border-radius: 20px;">
 			<!--#1-->
 			<div style="width:112%; margin: -1% 0 2% -6%; border-bottom: 1px dotted gray;"> 
@@ -180,7 +180,7 @@ prefix="c" %>
 							</div>
 													
 						</div>
-						<div contenteditable="true" id="procedimento" class="myInput" placeholder=" Procedimento" style="margin-top:-6px; scrollbar-width: none; width:100%; height:90%; display: none; color: #333333; overflow-y: scroll;" required ></div>
+						<div contenteditable="true" id="procedimento" class="myInput" placeholder="Procedimento" style="margin-top:-6px; scrollbar-width: none; width:100%; height:90%; display: none; color: #333333; overflow-y: scroll;" required ></div>
 					</div>
 					
 				</div>
@@ -196,12 +196,11 @@ prefix="c" %>
 			</div>
 			<!--#5-->
 			<div style="width:100%; border: 1px solid transparent;"> 
+				<button id="eliminaricetta"  type="button" class="my-slidingbutton" style="float:left; width:30%; margin:0; font-family:'Pacifico'; border:1px solid #ff9d7d; border-radius: 20px;">elimina ricetta <i class="fas fa-trash"></i></button>
 				<button id="aggiornaricetta" type="button" class="my-slidingbutton" style="float:right; width:30%; margin:0; font-family:'Pacifico'; border:1px solid #ff9d7d; border-radius: 20px;">aggiorna ricetta <i class="fa fa-feather"></i></button>
 			</div>
 		</div>
 	</div>
-	
-	<div style="position:absolute; right:30%; margin-top: -20px;" id="google_translate_element"></div>
 	
 	<div id="commenti" style="margin: 10px 0 200px 0; border: 1px solid transparent;"> 
 	
@@ -226,28 +225,25 @@ prefix="c" %>
 			</div>
 		</div>
 		
-		
 	</div>
-	
-	<!-- <script type="text/javascript">
-		function googleTranslateElementInit() {
-		  new google.translate.TranslateElement({pageLanguage: 'it'}, 'google_translate_element');
-		}
-	</script> -->
-		
-	<!-- <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> -->
 	
 	<script type="text/javascript" src="js/ricetta.js" ></script>
 	<script type="text/javascript" src="js/gestioneFormRicette.js" ></script>
 	
 	<% if (((boolean)request.getSession().getAttribute("edit")) == true) { %>
-	    <script type="text/javascript">
-	    	/*var x = $(document.createElement("div"));
-	    	x.attr({ "class" : "container my-container", "style" : "width:100%; padding: 40px; padding-top: 20px; border-radius: 20px;"});
-	    	$("#capp").append(x);*/
+	    <script id="oneTime" type="text/javascript">
 	    	
-	    	//createFrom();
+	    	editButton();	    	
+	    	
 	    </script>
+	<% }else{ %>
+		<script id="oneTime" type="text/javascript">
+	    	
+			document.getElementById("bright").remove();
+			document.getElementById("ness").remove();
+			document.getElementById("oneTime").remove();
+	    	
+	    </script>		
 	<% } %>
 	
 	<script>

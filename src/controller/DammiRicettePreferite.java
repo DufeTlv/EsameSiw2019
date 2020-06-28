@@ -58,7 +58,7 @@ public class DammiRicettePreferite extends HttpServlet {
 			}
 			
 			jsonObject.put("ricetta", array);
-			System.out.println(preferiti.size());
+			//System.out.println(preferiti.size());
 			response.getWriter().println(jsonObject.toString());
 		
 		} catch (JSONException e) {

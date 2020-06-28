@@ -12,4 +12,6 @@ public interface PreferitoDao {
 	public void update(Preferito preferito); 							// Update
 	public void delete(Preferito preferito); 							// Delete
 	
+	public void clearFromRicetta(Long id);
+	
 }

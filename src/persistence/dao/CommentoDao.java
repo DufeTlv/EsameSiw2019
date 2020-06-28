@@ -12,4 +12,5 @@ public interface CommentoDao {
 	public void delete(Commento commento);					// Delete
 	
 	public List<Commento> retrieveGradually(Long id);		// Recupera 6 ricette dall'ultima recuperata
+	public void clearFromRicetta(Long id);
 }

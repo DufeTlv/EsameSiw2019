@@ -1,10 +1,6 @@
 $(document).ready(
-		getCommenti(),
-		//getValNutr(),
-		//popolaSelectIngredienti(),
-		//popolaForm(),
-		editButton()//,
-		//translate()
+		getCommenti()//,
+		//getValNutr()
 		
 );
 
@@ -77,7 +73,12 @@ function getCommenti(){
 						
 						x.insertAfter(comm[i].childNodes[1]);
 					}
+					
+					if(commenti.commento[i].del == 1){
+						addDeleteButton(comm[i].childNodes[0], commenti.commento[i].id);
+					}
 				}
+				
 			}
 		}
 	});
@@ -107,6 +108,39 @@ function aggiungiCommento(){
 	});
 }
 
+function addDeleteButton(node, id){
+	var dChild = document.createElement("div");
+	dChild.className = "my-expand-button";
+	dChild.style.position = "relative";
+	dChild.style.margin = "5px";
+	dChild.style.fontSize = "12px";
+	dChild.style.right = "0px";
+	
+	dChild.onmouseleave = function(){this.childNodes[1].style.display = 'none'; this.childNodes[1].style.animation = '';};
+	dChild.innerHTML = "<span class='fas fa-trash' style='position:absolute; top:8px; left:10px; font-size:19px;'></span>"
+					   + "<p style='position:absolute; right:50px; top: 6px; font-size:16px; font-family: Pacifico; display: none;'>elimina</p>";
+
+	dChild.addEventListener('webkitAnimationEnd', function(){
+		this.childNodes[1].style.display = 'inline-block'
+		this.childNodes[1].style.animation = 'opacitybutton 0.5s';
+	});
+	
+	dChild.addEventListener('click', function(){
+		var jsonObj = '{ "id":' + id + '}';
+		$.ajax({
+			type: "POST",
+			url : 'EliminaCommento',
+			datatype: "json",
+			data: jsonObj,
+			success : function(responseText) {
+				
+			}
+		});
+	});
+	
+	node.append(dChild);
+}
+
 function editButton(){
 	
 	var rChild = document.createElement("div");
@@ -130,6 +164,8 @@ function editButton(){
 	});
 	
 	document.getElementById("titoloR").after(rChild);
+	
+	document.getElementById("oneTime").remove();
 	
 }
 
@@ -164,17 +200,19 @@ function getValNutr(){
 				
 				cnt--;
 				if(cnt == 0)
-					document.getElementById("valnut").innerHTML += "<div style='display:inline-block; width:50%; border-right: 1px dotted black;'><ul><li>energia: "+energia.toFixed()+" kcal</li><li> grassi: "+ grassi.toFixed(1)+" g</li><li> carb: "+carb.toFixed(1)
-																  +" g</div><div style='display:inline-block; width:50%; padding-left: 40px; float:right;'></li><li> prot: "+prot.toFixed(1)+" g</li><li> zucch: "+zucch.toFixed(1)+" g</li><li> fibre: "+fibre.toFixed(1)+" g</li></ul></div>";
+					document.getElementById("valnut").innerHTML += 
+						"<div style='display:inline-block; width:50%; border-right: 1px dotted black;'><ul><li>energia: "+energia.toFixed()
+						+ " kcal</li><li> grassi: "+ grassi.toFixed(1)
+						+ " g</li><li> carb: "+carb.toFixed(1)
+						+ " g</div><div style='display:inline-block; width:50%; padding-left: 40px; float:right;'></li><li> prot: "+prot.toFixed(1)
+						+ " g</li><li> zucch: "+zucch.toFixed(1)+" g</li><li> fibre: "+fibre.toFixed(1)+" g</li></ul></div>";
 				
 			},
 		    error: function(XMLHttpRequest, textStatus, errorThrown) { 
 		        alert("Status: " + textStatus); alert("Error: " + errorThrown); 
 		    } 
 	 	});
-		
 	}
-	
 }
 
 function searchDivController(){
@@ -257,7 +295,7 @@ function giphy(){
 	        var $div = $("<div>");
 	        var gif = r.data[i].images;
 	
-	        // Image builder object
+	        // Costruttore immagini
 	        $img.attr({
 	          "src": gif.fixed_height_still.url,
 	          "class": "gif",

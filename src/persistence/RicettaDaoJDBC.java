@@ -328,12 +328,12 @@ public class RicettaDaoJDBC implements RicettaDao{
     }
 
     @Override
-    public void delete(Ricetta ricetta) {
+    public void delete(Long id) {
     	Connection connection = this.dataSource.getConnection();
         try {
             String delete = "delete from ricetta where id = ?";
             PreparedStatement statement = connection.prepareStatement(delete);
-            statement.setLong(1, ricetta.getId());
+            statement.setLong(1, id);
             statement.executeUpdate();
         } catch (SQLException e) {
             throw new PersistenceException(e.getMessage());

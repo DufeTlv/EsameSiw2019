@@ -23,9 +23,7 @@ public class DammiProfilo extends HttpServlet {
 			RequestDispatcher rd = req.getRequestDispatcher("loginfailed.html");
 			rd.forward(req, resp);
 		}else {
-			//request.getSession().setAttribute("username", request.getParameter("username"));
-			//getServletContext().setAttribute("username", getServletContext().getAttribute("username"));
-			req.getSession().setAttribute("username", req.getSession().getAttribute("username"));
+			//req.getSession().setAttribute("username", req.getSession().getAttribute("username"));
 			
 			RequestDispatcher rd = req.getRequestDispatcher("profile.jsp");
 			rd.forward(req, resp);

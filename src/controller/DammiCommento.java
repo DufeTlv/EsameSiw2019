@@ -33,6 +33,10 @@ public class DammiCommento extends HttpServlet {
 		//System.out.println(jsonReceived);
 		
 		try {
+			Long aId = null;
+			if(request.getSession().getAttribute("username") != null)
+				aId = DatabaseManager.getInstance().getDaoFactory().getAccountDAO().retrieveIdByEmail((String) request.getSession().getAttribute("username"));
+			
 			//JSONObject json = new JSONObject(jsonReceived);
 			List<Commento> commenti = DatabaseManager.getInstance().getDaoFactory().getCommentoDAO().findAll((Long) request.getSession().getAttribute("ricetta_id"));
 			//Creating a JSONObject object
@@ -46,6 +50,13 @@ public class DammiCommento extends HttpServlet {
 				record.put("descrizione", commenti.get(i).getDescrizione());
 				record.put("gif_url", commenti.get(i).getGifUrl());
 				record.put("gif_url_still", commenti.get(i).getGifUrlStill());
+								
+				if(aId != null) {
+					record.put("del", (commenti.get(i).getAccount_id() == aId)? "1": "0" );
+					record.put("id", commenti.get(i).getId());
+					//System.out.println(commenti.get(i).getId());
+				}else
+					record.put("del", "0");
 				
 				array.put(record);
 			}

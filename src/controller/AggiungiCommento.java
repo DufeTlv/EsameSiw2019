@@ -29,7 +29,8 @@ public class AggiungiCommento extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if(request.getSession().getAttribute("username") != null) {
+		
+		if(request.getSession().getAttribute("username") != null ) {
 			BufferedReader reader = new BufferedReader(new InputStreamReader(request.getInputStream()));
 			String jsonReceived = reader.readLine();
 			System.out.println(jsonReceived);

@@ -61,7 +61,6 @@
 			
 			<div id="account" style="float: right; width:60%; height:100%; border-left: 1px dotted black;">
 				<button id="datiAnagraficiBtn" class="my-slidingbutton" style="font-family:'Pacifico'; height:40px; border-radius:0px;">Dati Anagrafici<span class='fas fa-angle-right' style='position:relative; top: 2px; float:right; font-size:25px;'></span></button>
-				<button id="emailBtn" class="my-slidingbutton" style="font-family:'Pacifico'; height:40px; border-radius:0px;">Email<span class='fas fa-angle-right' style='position:relative; top: 2px; float:right; font-size:25px;'></span></button>
 				<button id="passwordBtn" class="my-slidingbutton" style="font-family:'Pacifico'; height:40px; border-radius:0px;">Password<span class='fas fa-angle-right' style='position:relative; top: 2px; float:right; font-size:25px;'></span></button>
 			</div>
 			

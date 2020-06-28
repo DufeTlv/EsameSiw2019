@@ -14,6 +14,19 @@ function setClickListeners(){
 			uploadRicetta(1);
 		});
 	
+	var delBtn = document.getElementById("eliminaricetta");
+	if(delBtn != null)
+		delBtn.addEventListener('click', function(){
+			$.ajax({
+				type: "POST",
+				url : 'EliminaRicetta',
+				success : function(responseText) {
+						alert("ricetta eliminata con successo");
+						window.history.back();
+				}
+			});
+		});
+	
 	document.getElementById("aggIngr").addEventListener('click', function(){
 		aggiungiIngr();
 	});

@@ -155,4 +155,27 @@ public class PreferitoDaoJDBC implements PreferitoDao{
 		
 	}
 
+	@Override
+	public void clearFromRicetta(Long id) {
+		Connection connection = this.dataSource.getConnection();
+		
+		 try {
+			 String delete = "delete from preferito where ricetta_id = ?";
+			 
+			 PreparedStatement statement = connection.prepareStatement(delete);
+			 statement.setLong(1, id);
+			 
+			 statement.executeUpdate();
+			
+		 } catch (SQLException e) {
+	            throw new PersistenceException(e.getMessage());
+	     } finally {
+	    	 try {
+	    		 connection.close();
+	         } catch (SQLException e) {
+	        	 throw new PersistenceException(e.getMessage());
+	         }
+	     }
+	}
+
 }

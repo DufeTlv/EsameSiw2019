@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.Account;
 import persistence.DatabaseManager;
@@ -30,6 +31,7 @@ public class Login extends HttpServlet {
 		AccountDao aDao = factory.getAccountDAO();*/
 		Account a = DatabaseManager.getInstance().getDaoFactory().getAccountDAO().findByEmail(username);
 		
+		//req.getSession(true);
 		if(a != null && a.getPassword().equals(password)) {
 			req.getSession().setAttribute("username", username);
 			req.getSession().setAttribute("id", a.getId());

@@ -10,7 +10,7 @@ public interface RicettaDao {
 	public Ricetta findByPrimaryKey(Long codice);   							// Retrieve
 	public List<Ricetta> findAll();       
 	public void update(Ricetta ricetta); 										//Update
-	public void delete(Ricetta ricetta); 										//Delete
+	public void delete(Long id); 												//Delete
 	
 	public Long getAccountId(Long id);
 	public Ricetta findByPrimaryKeyJoin(Long id); 								// RetrievePorzioni
