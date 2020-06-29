@@ -108,20 +108,23 @@ function popolaSelectIngredienti(){
 			url : 'DammiIngredienti',
 			success : function(responseText) {
 				var resp = JSON.parse(responseText);
-				var selectI = document.getElementsByClassName("selectIngr");
-				var selectU = document.getElementsByClassName("selectUdm");				
+				
+				var selectI = document.getElementsByClassName("selectIngr"); //ingredienti
+				var selectU = document.getElementsByClassName("selectUdm");  //unita di misura				
 				
 				for(var i=0; i < resp.ingrediente.length; i++){
 					var newChildI = document.createElement("option");
 					newChildI.innerHTML = resp.ingrediente[i].nome;
 					newChildI.value = resp.ingrediente[i].id;
 					selectI[0].append(newChildI);			
-					
+				}		
+				for(var i=0; i< resp.udm.length; i++){
 					var newChildU = document.createElement("option");
 					newChildU.innerHTML = resp.udm[i].nome;
 					newChildU.value = resp.udm[i].id;
 					selectU[0].append(newChildU);	
-				}			
+				}
+				
 			},
 	        async: false
 		});
@@ -140,7 +143,6 @@ function uploadRicetta(comando){
 	var jsonObj;
 	
 	if(titolo != '' && tdp != '' && proc != ''){ //&& ((comando == 0 && image_url != '') || comando == 1 )){
-		//document.getElementById("salvaricetta").disabled = false;
 		
 		jsonObj = '{"comando":"' + comando + '", "titolo":"' + titolo + '" , "tempopreparazione": "' + tdp + '", "difficolta":' + diff + ', "procedimento":"' + proc + '", "image_url":"' +image_url+ '", "deletehash":"' +deletehash+ '", ';
 
@@ -170,7 +172,8 @@ function uploadRicetta(comando){
 			datatype: "json",
 			data: jsonObj,
 			success: function (responseText){
-				alert(responseText);
+				//alert(responseText);
+				alert("ricetta caricata con successo");
 			}
 		});
 	
@@ -227,7 +230,8 @@ function imgur() {
 				console.log(response);
 				var jsonObj = JSON.parse(response);
 				
-				alert(jsonObj.data.link + ' ' + jsonObj.data.deletehash); //JXBhlV6uJHS20ST, LP8nDOJj8Mp0gbV
+				alert("immagine caricata con successo");
+				//alert(jsonObj.data.link + ' ' + jsonObj.data.deletehash); //JXBhlV6uJHS20ST, LP8nDOJj8Mp0gbV
 				image_url = jsonObj.data.link;
 				deletehash = jsonObj.data.deletehash;
 			});

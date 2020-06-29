@@ -31,20 +31,22 @@ public class AggiungiAccount extends HttpServlet {
 		try {
 			
 			Account account = new Account();
-			account.setCognome(req.getParameter("lastname"));
-			account.setNome(req.getParameter("firstname"));
+			account.setCognome(req.getParameter("cognome"));
+			account.setNome(req.getParameter("nome"));
 			
-			/**Calendar cal = Calendar.getInstance();
-			cal.set(1959, Calendar.MAY, 20); // // 1 marzo 1987
-			Date date = cal.getTime();**/
+			//Calendar cal = Calendar.getInstance();
+			//cal.set(1959, Calendar.MAY, 20); // // 1 marzo 1987
+			//Date date = cal.getTime();
 			
-			DateFormat format = new SimpleDateFormat("yyyy,MM,dd", Locale.ITALIAN);
-			Date date = format.parse(req.getParameter("birthday"));
+			//System.out.println(date.getDate());
 			
-			System.out.println(date);
+			//String date = (String)req.getParameter("dataNascita");
+			//System.out.println(date);
+			//SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			//System.out.println(sdf.format(sdf.parse(date)));
 			
-			account.setDataNascita(date);
-			account.setSesso(req.getParameter("sex"));
+			//account.setDataNascita(date);
+			account.setSesso(req.getParameter("sesso"));
 			account.setIndirizzoEmail(req.getParameter("email"));
 			account.setPassword(req.getParameter("password"));
 			
@@ -55,7 +57,7 @@ public class AggiungiAccount extends HttpServlet {
 			e.printStackTrace();
 		}		
 		
-		RequestDispatcher view = req.getRequestDispatcher("useradd.jsp");
+		RequestDispatcher view = req.getRequestDispatcher("loginfailed.html");
 		view.forward(req, resp);
 	}
 

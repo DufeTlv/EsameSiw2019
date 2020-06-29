@@ -122,7 +122,8 @@ function getRicette(){
 				
 				var i = 0;
 				var j = 0;
-				if(id > -1) i = ((forms.length)-ricette.ricetta.length);
+				if(id > -1) 
+					i = ((forms.length)-ricette.ricetta.length);
 				
 				for(; i < forms.length; i++, j++){
 					forms[i].id = ricette.ricetta[j].id;

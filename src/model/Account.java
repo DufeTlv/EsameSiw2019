@@ -11,7 +11,6 @@ public class Account {
 	private String indirizzoEmail;
 	private String password;
 	private Date   dataNascita;
-	private Date   dataIscrizione;
 	
 	public Account(){}
 	
@@ -69,15 +68,6 @@ public class Account {
 	
 	public Date getDataNascita() {
 		return dataNascita;
-	}
-	
-	public void setDataIscrizione(Date dataIscrizione) {
-		this.dataIscrizione = dataIscrizione;
-	}
-	
-	public Date getDataIscrizione() {
-		return dataIscrizione;
-	}
-	
+	}	
 	
 }

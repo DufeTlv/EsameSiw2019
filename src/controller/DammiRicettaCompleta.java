@@ -33,6 +33,7 @@ public class DammiRicettaCompleta extends HttpServlet {
 		Ricetta ricetta = DatabaseManager.getInstance().getDaoFactory().getRicettaDAO().findByPrimaryKey(idRicetta);
 		Long idAccount;
 		
+		// blocco controllo account
 		request.getSession().setAttribute("edit", false);
 		if(request.getSession().getAttribute("username") != null) {
 			idAccount = DatabaseManager.getInstance().getDaoFactory().getAccountDAO().findByEmail((String) request.getSession().getAttribute("username")).getId();

@@ -48,7 +48,7 @@ public class DammiRicettePreferite extends HttpServlet {
 			   Ricetta ricetta = DatabaseManager.getInstance().getDaoFactory().getRicettaDAO().findByPrimaryKey(preferiti.get(i).getRicetta_id());
 			   record.put("id", ricetta.getId());
 			   record.put("titolo", ricetta.getTitolo());
-			   record.put("difficolta", ricetta.getDifficolta());
+			   record.put("difficolta", (ricetta.getDifficolta() == 0)? "Facile" :(ricetta.getDifficolta() == 1)? "Media": "Difficile");
 			   record.put("tempo", ricetta.getTempo());
 			   record.put("imageurl", ricetta.getImageUrl());
 			   

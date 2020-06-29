@@ -63,9 +63,11 @@ public class AggiungiModificaRicetta extends HttpServlet {
 				if(json.getString("comando").equals("0")) {
 					
 					ricetta.setAccountId(aId);
-					ricetta.setId(DatabaseManager.getInstance().getDaoFactory().getRicettaDAO().save(ricetta));
 					b = (ricetta.getId() != (long) -1);
-					System.out.println(b);
+					if(b)
+						ricetta.setId(DatabaseManager.getInstance().getDaoFactory().getRicettaDAO().save(ricetta));
+					
+					//System.out.println(b);
 					
 				}else{
 					

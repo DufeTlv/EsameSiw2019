@@ -44,7 +44,8 @@ public class AccountDaoJDBC implements AccountDao {
             //long dataN = account.getDataNascita().getTime();
             //statement.setDate(4, new java.sql.Date(dataN));
             
-            statement.setDate(4, new java.sql.Date(account.getDataNascita().getTime()));
+           // statement.setDate(4, new java.sql.Date(account.getDataNascita().getTime()));
+            statement.setDate(4, null);
             
             statement.setString(5, account.getSesso());
             statement.setString(6, account.getIndirizzoEmail());
@@ -116,9 +117,9 @@ public class AccountDaoJDBC implements AccountDao {
 				account.setSesso(result.getString("sesso"));
 				account.setIndirizzoEmail(result.getString("indirizzoemail"));
 				account.setPassword(result.getString("password"));
-				long dateN = result.getDate("datanascita").getTime();
+				//long dateN = result.getDate("datanascita").getTime();
 				//long dateI = result.getDate("dataiscrizione").getTime();
-				account.setDataNascita(new java.util.Date(dateN));
+				//account.setDataNascita(new java.util.Date(dateN));
 				//account.setDataIscrizione(new java.util.Date(dateI));
 			}
 			

@@ -39,6 +39,11 @@ function aggiungiPost(n){
 	}
 }
 
+function clearCommenti(){
+	while(document.getElementsByClassName("comments").length > 0)
+		document.getElementsByClassName("comments")[document.getElementsByClassName("comments").length-1].remove();
+}
+
 function getCommenti(){
 	
 	$.ajax({
@@ -99,10 +104,12 @@ function aggiungiCommento(){
 		url : 'AggiungiCommento',
 		datatype: "json",
 		data: jsonObj,
-		success : function(responseText) {
-			alert("commento caricato con successo");
+		success : function() {
+			//alert("commento caricato con successo");
 			document.getElementsByClassName("editor")[0].remove();
 			document.getElementById("commDiv").innerHTML = '';
+			clearCommenti();
+			getCommenti();
 		}
 	});
 }
@@ -132,7 +139,8 @@ function addDeleteButton(node, id){
 			datatype: "json",
 			data: jsonObj,
 			success : function(responseText) {
-				
+				clearCommenti();
+				getCommenti();
 			}
 		});
 	});

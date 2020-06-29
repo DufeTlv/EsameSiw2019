@@ -32,30 +32,14 @@
 			
 			<ul class="nav navbar-nav">
 				<li class="sub-menu-parent" tab-index="0"><a>chi siamo?</a>
-					<ul class="sub-menu" style="width:500%; height:auto">
-						<p  style="width:50%; padding: 10px 10px 0 0"> 
+					<div class="sub-menu" style="width:500%; height:auto">
+						<div  style="width:50%; padding: 10px 10px 0 0"> 
 							<b>FoodBalance</b> rapprestenta il nostro modo di perseguire un obiettivo, generare una cultura nutrizionale che ha alla base la salute dei nostri utenti 
-						</p>
+						</div>
 						<div class="my-container-div right" style="width:50%;">
 							<img src="pictures/frame.jpg" style="width:100%; border-radius: 0 5px 5px 0;">
 						</div>
-					</ul>
-				</li>
-		  		<li class="sub-menu-parent"><a>Page 2</a>
-					<ul class="sub-menu" style="width:500%; height:320%">
-						<p  style="width:50%; padding: 10px 10px 0 0"> <b>FoodBalance</b> </p>
-						<div class="my-container-div right" style="width:50%;">
-							<img src="pictures/frame.jpg" style="width:100%; border-radius: 0 5px 5px 0;">
-						</div>
-					</ul>
-				</li>
-		  		<li class="sub-menu-parent"><a>Page 3</a>
-					<ul class="sub-menu" style="width:500%; height:auto">
-						<p  style="width:50%; padding: 10px 10px 0 0"> <b>FoodBalance</b> </p>
-						<div class="my-container-div right" style="width:50%;">
-							<img src="pictures/frame.jpg" style="width:100%; border-radius: 0 5px 5px 0;">
-						</div>
-					</ul>
+					</div>
 				</li>
 			</ul>
 
@@ -110,24 +94,15 @@
 		</div>
 	</div>
 
-	<div class="my-container-div top-left height-transition" style= "top: 20%; height:100px; width: 30%; border-radius: 10px; background-color: trasparent; color: white">
+	<div class="my-container-div top-left height-transition" style= "top: 30%; height:100px; width: 30%; border-radius: 10px; background-color: trasparent; color: white">
 			<p class="myTitle" style="font-family: 'Pacifico'; font-size: 60px;">-FoodBalance-</p>
 			<p class="myTitle" style="font-family: 'Pacifico'; font-size: 60px;">-Condividi-</p>
-			<p class="myTitle" style="font-family: 'Pacifico'; font-size: 60px;">-Salva-</p> <!-- color: rgba(255,255,255,1); -->
+			<p class="myTitle" style="font-family: 'Pacifico'; font-size: 60px;">-Salva-</p>
 			<p class="myParagraph" style="font-family: 'Josefin Slab', cursive;"> rapprestenta il nostro modo di perseguire un obiettivo, generare una cultura nutrizionale che ha alla base la salute dei nostri utenti </p>
 			<p class="myParagraph" style="font-family: 'Josefin Slab', cursive;"> le tue ricette con migliaia di utenti, crea il tuo blog personale </p>
 			<p class="myParagraph" style="font-family: 'Josefin Slab', cursive;"> le tue preferite nel tuo ricettario </p>
 	</div>
 
-	<!--<button type="submit" class="my-button">Accedi</button>
-	<div style="padding-left:16px">
-		<h1>Welcome to 1st app</h1>
-		<a href= "./createuser.html"> create new user</a>
-	</div> -->
-	<span style="display:inline-block"></span>
-	<!--<div class="footer">
-	  <p>Footer</p>
-	</div>-->
 
 	<script>
 		var slideIndex = 0;
@@ -184,13 +159,6 @@
 		}
 
 		function carousel() {
-			//var i;
-			/*for (i = 0; i < x.length; i++) { 
-				x[i].style.display = "none";
-			}*/
-			//slideIndex++;
-			//if (slideIndex > x.length-1) {slideIndex = 0} 
-			//x[slideIndex].style.display = "block"; 
 			
 			var x = document.getElementsByClassName("mySlides");
 			var y = document.getElementsByClassName("myParagraph");
@@ -215,13 +183,7 @@
 			y[slideIndex].style.display = "block"; 
 			w[slideIndex].style.display = "block";
 
-			
-			/*var h0 = z[0].style.clientHeight;
-			z[0].style.height = "auto";
-			var h1 = z[0].style.clientHeight;
-			z[0].style.height = h0 ;*/
-			//z[0].style.height = h1 +"px";
-			z[0].style.height = (slideIndex == 0)? "30%" : (slideIndex == 1)? "20%" : "25%" ;
+			z[0].style.height = (slideIndex == 0)? "20%" : (slideIndex == 1)? "20%" : "25%" ;
 
 			setDots(slideIndex);
 			

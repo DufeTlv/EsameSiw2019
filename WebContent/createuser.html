@@ -57,10 +57,10 @@
 			<input class="my-input" type="text" size="40" maxlength="40" name="email" placeholder="email" required>
 
 			<label for="password" class="gradient-text" style="margin: 0 0 0 0;"><b>Password: </b></label>
-			<input class="my-input" type="password"  name="password" placeholder="password" id="myInput" required>
+			<input class="my-input" type="password"  name="password" placeholder="password" id="password" required>
 			
 			<div class="container custom-checkbox">
-				<input type="checkbox" onclick="myFunction()">
+				<input type="checkbox" onclick="showPass()">
 				<label class="gradient-text">mostra password:</label>
 			</div>
 			<!--<input type="checkbox" onclick="myFunction()"><label class="gradient-text" style="margin-left: 5px;">show password</label>-->
@@ -77,15 +77,15 @@
 		</div>
 	</form>
 
-	<!--  <span style="display:inline-block"></span>
-
-	<h1>Let's create a new user</h1>
-	<form method="POST" action="CreateUser.do">
-		First name: <input type="text" size="40" maxlength="40" name="firstname"/><br>
-		Last name:  <input type="text" size="40" maxlength="40" name="lastname" /><br>
-		Country:    <input type="text" size="40" maxlength="40" name="country"  /><br> 
-		<input type="SUBMIT" value="create">
-	</form> -->	
+	<script type="text/javascript">
+		function showPass(){
+			var passInput = document.getElementById("password");
+			if(passInput.type == "password")
+				passInput.type = "text";
+			else
+				passInput.type = "password";
+		}
+	</script>
 
 </body>
 </html>
