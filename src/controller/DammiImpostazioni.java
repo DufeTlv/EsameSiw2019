@@ -17,7 +17,7 @@ public class DammiImpostazioni extends HttpServlet {
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//request.getSession().setAttribute("username", request.getParameter("username"));
+		//req.getSession().setAttribute("username", req.getParameter("username"));
 		
 		if(req.getSession().getAttribute("username") == null) {
 			RequestDispatcher rd = req.getRequestDispatcher("loginfailed.html");

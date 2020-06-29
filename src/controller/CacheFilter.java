@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+import java.util.Date;
+
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -31,26 +33,14 @@ public class CacheFilter implements Filter {
 		// place your code here
 		HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) resp;
-        
-        //HttpSession session = request.getSession(false);      
-		/*System.out.println(session.getAttribute("username"));
-        if (session == null || session.getAttribute("username") == null) {
-        	response.sendRedirect("index.html"); // No logged-in user found, so redirect to login page.
-        } else {
-	    	response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
-	    	response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
-	    	response.setDateHeader("Expires", 0);
-	    	// pass the request along the filter chain
-	        chain.doFilter(req, resp);  
-        }*/
-        
-        response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
+    	
+    	response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
     	response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
-    	response.setDateHeader("Expires", 0);
-    	//setDateHeader("Last-Modified", (new Date()).getTime() );
+    	response.setDateHeader("Expires", 0); // Proxies.
+    	//response.setDateHeader("Last-Modified", (new Date()).getTime() );
     	
     	// pass the request along the filter chain
-        chain.doFilter(req, resp); 
+        chain.doFilter(request, response); 
 	}
 	
 	public void init(FilterConfig fConfig) throws ServletException {

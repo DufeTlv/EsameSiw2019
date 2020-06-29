@@ -1,3 +1,6 @@
+var image_url = '';
+var deletehash = '';
+
 $(document).ready(setClickListeners());
 
 function setClickListeners(){
@@ -46,6 +49,21 @@ function setClickListeners(){
 	
 }
 
+function clearForm(){
+	
+	document.getElementById("titolo").value = '';
+	document.getElementById("tempopreparazione").value = '';
+	document.getElementById("difficolta").value = 0;
+	document.getElementById("procedimento").innerHTML = '';
+	
+	while(document.getElementsByClassName("selectDiv").length > 1)
+		rimuoviIngr();
+	
+	document.getElementsByClassName("selectIngr")[0].value = 0; 
+	document.getElementsByClassName("selectUdm")[0].value = 0;
+	
+}
+
 // mostra il form per la creazione e il caricamento delle ricette
 function showForm(){
 	var y = document.getElementsByClassName("myInput");
@@ -65,6 +83,8 @@ function hideForm(){
 	}
 	
 	$('body').css('overflow-y', 'auto');
+	
+	clearForm();
 }
 
 function aggiungiIngr(){
@@ -131,8 +151,6 @@ function popolaSelectIngredienti(){
 	}
 }
 
-var image_url = '';
-var deletehash = '';
 function uploadRicetta(comando){
 	
 	var titolo = document.getElementById("titolo").value;
@@ -174,6 +192,7 @@ function uploadRicetta(comando){
 			success: function (responseText){
 				//alert(responseText);
 				alert("ricetta caricata con successo");
+				hideForm();
 			}
 		});
 	

@@ -19,7 +19,8 @@ public class DammiRicerca extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		request.getSession().setAttribute("username", request.getSession().getAttribute("username"));
+		if(request.getSession().getAttribute("username") != null)
+			request.getSession().setAttribute("username", request.getSession().getAttribute("username"));
 		
 		//getServletContext().setAttribute("username", getServletContext().getAttribute("username"));
 		
