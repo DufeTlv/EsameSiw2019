@@ -59,17 +59,6 @@
 		</div>
 	</div>
 
-	<div style="position: absolute; top:10%; right:10%;">			
-		<c:if test="${username != null}">
-			<p>Sei loggato come </p><p id="username" >${username}</p>
-			<a href="./index.html">Logout</a>
-		</c:if>			
-
-		<p>
-			User-name: <% out.print(username); %><br>
-		</p>
-	</div>
-
 	<!--brightness-->
 	<div class="brightness-filter myInput"> </div>
 

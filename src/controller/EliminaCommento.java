@@ -27,29 +27,29 @@ public class EliminaCommento extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		/*if(request.getSession().getAttribute("username") != null) {
+		if(request.getSession().getAttribute("username") != null) {
 			BufferedReader reader = new BufferedReader(new InputStreamReader(request.getInputStream()));
 			String jsonReceived = reader.readLine();
-			System.out.println(jsonReceived);
+			//System.out.println(jsonReceived);
 			
 			Long aId = DatabaseManager.getInstance().getDaoFactory().getAccountDAO().retrieveIdByEmail((String) request.getSession().getAttribute("username"));
 			try {
 				JSONObject json = new JSONObject(jsonReceived);
 				
 				//System.out.println(json.getLong("id"));
-				//Long c_aId = DatabaseManager.getInstance().getDaoFactory().getCommentoDAO().findByPrimaryKey(json.getLong("id"))
+				Long c_aId = DatabaseManager.getInstance().getDaoFactory().getCommentoDAO().findByPrimaryKey(json.getLong("id")).getAccount_id();
 				
 				Commento commento = new Commento();
 				commento.setAccount_id(aId);
-				commento.setRicetta_id((long) request.getSession().getAttribute("username"));
-				commento.setId(id);
-				if(json.getLong("id") == aId)
+				commento.setRicetta_id((Long) request.getSession().getAttribute("ricetta_id"));
+				commento.setId(json.getLong("id"));
+				if(c_aId == aId)
 					DatabaseManager.getInstance().getDaoFactory().getCommentoDAO().delete(commento);
 			} catch (JSONException e) {
 				  // TODO Auto-generated catch block
 				  e.printStackTrace();
 			}
-		}*/
+		}
 	}
 
 }

@@ -37,12 +37,11 @@ function setClickListeners(){
 			jsonObj += '"nome":"'       	 + document.getElementById("nome").value       		+ '",';
 			jsonObj += '"cognome":"'    	 + document.getElementById("cognome").value	   		+ '",';
 			jsonObj += '"sesso":"'    		 + document.getElementById("sesso").value	   		+ '",';
-			jsonObj += '"email":"'    		 + document.getElementById("email").value	   		+ '",';
 			jsonObj += '"oldpassword":"'     + document.getElementById("oldpassword").value	   	+ '",';
 			jsonObj += '"newpassword":"'     + document.getElementById("newpassword").value	   	+ '",';
 			jsonObj += '"confnewpassword":"' + document.getElementById("confnewpassword").value + '"}';
 			
-			alert(jsonObj);
+			//alert(jsonObj);
 			hideBanners();
 			
 			var t = this;
@@ -66,7 +65,6 @@ function resettaForm(){
 	document.getElementById("nome").value = "";
 	document.getElementById("cognome").value = "";
 	document.getElementById("sesso").selectedIndex = 0;
-	document.getElementById("email").value = "";
 	document.getElementById("oldpassword").value = "";
 	document.getElementById("newpassword").value = "";
 	document.getElementById("confnewpassword").value = "";
@@ -92,7 +90,6 @@ function hideBanners(){
 function hideAllDivs(){
 	document.getElementById("account").style.display        = 'none';
 	document.getElementById("datiAnagrafici").style.display = 'none';
-	document.getElementById("indirizzoEmail").style.display = 'none';
 	document.getElementById("password").style.display       = 'none';
 	document.getElementById("aspetto").style.display        = 'none';
 	

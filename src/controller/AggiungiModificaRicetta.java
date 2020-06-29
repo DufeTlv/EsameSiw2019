@@ -38,7 +38,7 @@ public class AggiungiModificaRicetta extends HttpServlet {
 				jsonReceived = jsonReceived + line + "\n";
 				line = reader.readLine();
 			}
-			System.out.println(jsonReceived);
+			//System.out.println(jsonReceived);
 			
 			if(jsonReceived.contains(System.getProperty("line.separator")))
 				jsonReceived.replace(System.getProperty("line.separator"), "<br/>");

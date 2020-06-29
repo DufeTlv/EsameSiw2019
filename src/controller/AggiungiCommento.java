@@ -33,7 +33,7 @@ public class AggiungiCommento extends HttpServlet {
 		if(request.getSession().getAttribute("username") != null ) {
 			BufferedReader reader = new BufferedReader(new InputStreamReader(request.getInputStream()));
 			String jsonReceived = reader.readLine();
-			System.out.println(jsonReceived);
+			//System.out.println(jsonReceived);
 			
 			try {
 				JSONObject json = new JSONObject(jsonReceived);

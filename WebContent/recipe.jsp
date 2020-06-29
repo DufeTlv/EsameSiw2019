@@ -207,7 +207,7 @@ prefix="c" %>
 		<div id="formCommento"class="container my-container" style="width:40%; padding: 0;">
 			<div style="width:100%; padding: 10px 20px;">
 				<div style="width:40%; padding: 2px;">
-					<p id="username-label" style="font-family: 'Pacifico';">Nome Utente</p>
+					<p id="username-label" style="font-family: 'Pacifico';">${username}</p>
 				</div>
 				<div contenteditable="true" id="commDiv" class="my-input" placeholder=" scrivi un commento" style="font-family: 'Pacifico'; font-size: 18px;  border:1px solid #AAAAAA; border-radius:4px; width:100%; height:40px; color: #333333; overflow-y: hidden;" required ></div>
 				

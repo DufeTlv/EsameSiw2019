@@ -1,7 +1,6 @@
 $(document).ready(
-		getCommenti()//,
-		//getValNutr()
-		
+		getCommenti(),
+		getValNutr()		
 );
 
 function aggiungiPost(n){
@@ -276,6 +275,7 @@ function clearGifDiv(){
 
 function giphy(){
 	createGifDiv();
+	clearGifDiv();
 	
 	var queryURL = "https://api.giphy.com/v1/gifs/search?";
 	var query = $('#ricercaGIF').val();

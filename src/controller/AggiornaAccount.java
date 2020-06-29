@@ -45,9 +45,6 @@ public class AggiornaAccount extends HttpServlet {
 			if(!json.getString("sesso").isEmpty())
 				accBkp.setSesso(json.getString("sesso"));
 			
-			if(!json.getString("email").isEmpty())
-				accBkp.setIndirizzoEmail(json.getString("email"));
-			
 			if(!json.getString("oldpassword").isEmpty()) {
 				if(json.getString("oldpassword").equals(accBkp.getPassword()) && json.getString("newpassword").equals(json.getString("confnewpassword"))) {
 					accBkp.setPassword(json.getString("newpassword"));

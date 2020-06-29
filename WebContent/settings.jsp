@@ -88,7 +88,7 @@
 				</div>
 			</div>
 			
-			<div id="indirizzoEmail" style="float: right; width:60%; height:100%; border-left: 1px dotted black; display: none;">
+			<!-- <div id="indirizzoEmail" style="float: right; width:60%; height:100%; border-left: 1px dotted black; display: none;">
 				<p class="my-alert-banner success">dati salvati con successo</p>
 				<p class="my-alert-banner error">uno o più campi non sono validi</p>
 				<div class="my-circle-button backAccount" style="margin:10px 10px;">
@@ -102,7 +102,7 @@
 				<div class="my-circle-button aggiornaDati" style="position:relative; left:35%; top:20%; width:120px; margin:10px 10px;">
 					<p style='position:relative; left:10px; font-size:16px; font-family: Pacifico; display:inline-block;'>Aggiorna Dati</p>
 				</div>
-			</div>
+			</div>-->
 			
 			<div id="password" style="float: right; width:60%; height:100%; border-left: 1px dotted black; display: none;">
 				<p class="my-alert-banner success">dati salvati con successo</p>

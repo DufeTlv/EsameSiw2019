@@ -57,7 +57,35 @@ public class CommentoDaoJDBC implements CommentoDao{
 
 	@Override
 	public Commento findByPrimaryKey(Long codice) {
-		return null;
+		Connection connection = this.dataSource.getConnection();
+		Commento commento = null;
+		try {
+			String insert = "select id, account_id, descrizione, gif_url, gif_url_still from commento where id = ?";	 
+			PreparedStatement statement = connection.prepareStatement(insert);
+			statement.setLong(1, codice);
+			
+			ResultSet result = statement.executeQuery();
+			
+			if(result.next()) {
+				commento = new Commento();
+				commento.setAccount_id(result.getLong("account_id"));
+				commento.setDescrizione(result.getString("descrizione"));
+				commento.setId(result.getLong("id"));
+				commento.setGifUrl(result.getString("gif_url"));
+				commento.setGifUrlStill(result.getString("gif_url_still"));
+			}
+			
+			
+		} catch (SQLException e) {
+            throw new PersistenceException(e.getMessage());
+	     } finally {
+	    	 try {
+	    		 connection.close();
+	         } catch (SQLException e) {
+	        	 throw new PersistenceException(e.getMessage());
+	         }
+	     }
+		return commento;
 	}
 	
 	@Override
@@ -104,7 +132,7 @@ public class CommentoDaoJDBC implements CommentoDao{
 		try {
 			Commento commento;
 			
-			String insert = "select account_id, descrizione, gif_url, gif_url_still from commento where ricetta_id = ?";	 
+			String insert = "select id, account_id, descrizione, gif_url, gif_url_still from commento where ricetta_id = ?";	 
 			PreparedStatement statement = connection.prepareStatement(insert);
 			statement.setLong(1, codice);
 			 
@@ -113,9 +141,8 @@ public class CommentoDaoJDBC implements CommentoDao{
 			while(result.next()) {
 				 commento = new Commento();
 				 commento.setAccount_id(result.getLong("account_id"));
-				 //commento.setRicetta_id(result.getLong("ricetta_id"));
 				 commento.setDescrizione(result.getString("descrizione"));
-				 
+				 commento.setId(result.getLong("id"));
 				 commento.setGifUrl(result.getString("gif_url"));
 				 commento.setGifUrlStill(result.getString("gif_url_still"));
 				 
@@ -141,7 +168,26 @@ public class CommentoDaoJDBC implements CommentoDao{
 
 	@Override
 	public void delete(Commento commento) {
+		Connection connection = this.dataSource.getConnection();
 		
+		try {
+			String delete = "delete from commento where id = ? and ricetta_id = ? and account_id = ?";
+			PreparedStatement statement = connection.prepareStatement(delete);
+			statement.setLong(1, commento.getId());
+			statement.setLong(2, commento.getRicetta_id());
+			statement.setLong(3, commento.getAccount_id());
+			
+			statement.executeUpdate();
+            
+		} catch (SQLException e) {
+            throw new PersistenceException(e.getMessage());
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                throw new PersistenceException(e.getMessage());
+            }
+        }
 	}
 
 	@Override
